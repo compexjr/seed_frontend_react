@@ -4,70 +4,27 @@ Este projeto é uma dashboard feito com ReactJS, que faz o gerenciamento de usu�
 
 ## Como usar
 
-1. **Crie e ative um ambiente virtual na sua IDE (VScode ou outra):**
-   - No Windows:
-      ```powershell
-      python -m venv venv
-      .\venv\Scripts\activate
-      ```
-   - No Linux/MacOS:
+1. **Você precisa ter o NodeJS instalado na sua máquina (recomendo a versão 20) e instalar o pnpm.**
+   - No Windows/Linux/MacOS instale o pnpm:
       ```bash
-      python3 -m venv venv
-      source venv/bin/activate
+      npm install pnpm -v
       ```
-
-   ### Configuração do Ambiente
-
-   **1.1 Caso não seja possível executar o script de ativação no Windows, execute este comando:**
-   - No Windows:
-      ```powershell
-      Set-ExecutionPolicy RemoteSigned -Scope Process
-      ```
-      Esse comando permitirá a execução de scripts apenas no processo atual do VScode. Ao fechar o processo, a permissão voltará automaticamente para "Restricted".
-      Caso queira manter padrão a execução de scripts, ao invés de "process" use "CurrentUser".
+   - Agora instale as depedências do projeto
+     ```bash
+     pnpm install
+     ```
 
 2. **Crie o arquivo `.env` na raiz do projeto:**
-   - Crie um arquivo chamado `.env` no diretório raiz do seu projeto e adicione as variáveis necessárias, com valores padrão ou conforme orientação específica. Exemplo:
+   - Crie um arquivo chamado `.env` no diretório raiz do seu projeto e adicione as variáveis necessárias, com valores padrão ou conforme orientação específica. Use o ".env.example" como exemplo. Exemplo:
      ```
-      db_name = sqlite:///./NomeDoSeuBanco.db
-      API_KEY = SuaChaveSecreta
+     ENV_BASE_URL=
      ```
-   
-3. **Baixe os módulos do `requirements.txt`:**
-   - No terminal do Windows:
-      ```powershell
-      pip install -r requirements.txt
-      ```
-   - No terminal do Linux/MacOS:
-      ```bash
-      pip install -r requirements.txt
-      ```
-4. **Baixe o módulos do `wkhtmltopdf` no Sistema Operacional:**
-   - No terminal do Windows:
-      ```powershell
-      winget install --id wkhtmltopdf.wkhtmltopdf
-      ```
-   - No terminal do Linux/MacOS:
-      ```bash
-      sudo apt-get install wkhtmltopdf
-      ```
 
-5. **Execute a aplicação:**
-   - No terminal da pasta raiz, no Windows:
-     ```powershell
-     uvicorn server:app --reload
-     ```
-   - No terminal da pasta raiz, no Linux/MacOS:
+3. **Execute a aplicação:**
+   - No terminal da pasta raiz, no Windows/Linux/MacOS:
      ```bash
-     uvicorn server:app --reload
+     pnpm dev
      ```
-6. **Execute a arquivo server.py para criação do banco**
-
-7. **Acesse o Swagger da API**
-   - Após iniciar o processo, um host local estará disponível para ser acessado pelo navegador. Use essa URL + `/docs` para acessar o Swagger.
-
-
-
 
 ## Funcionalidades
 
@@ -101,19 +58,7 @@ Este projeto é dividido em diferentes tarefas conforme um fluxo de trabalho est
 
 Disponível em [link](https://github.com/orgs/compexjr/projects/1)
 
-### Passos para Criar um Novo Endpoint
 
-1. **Definir o Modelo no SQLAlchemy**
-   - Crie ou ajuste o modelo de dados da entidade que o novo endpoint irá manipular. No arquivo `models.py`, defina a classe que representa a tabela no banco de dados.
-
-2. **Criar o Esquema no Pydantic**
-   - Na pasta `schemas`, defina os esquemas de validação de dados de entrada e saída usando Pydantic.
-
-3. **Implementar as Funções CRUD**
-   - Na pasta `repositories`, crie um novo arquivo `.py` e adicione funções para manipulação de dados no banco, como criação, leitura, atualização e exclusão (CRUD).
-
-4. **Criar as Rotas no FastAPI**
-   - Na pasta `routes`, crie o arquivo `.py` com as funções de endpoint que processam as requisições HTTP (GET, POST, PUT, DELETE), utilizando as funções CRUD. Em seguida, referencie estas rotas no arquivo `main.py`.
 
 ## Regras de Negócio
 
@@ -126,7 +71,11 @@ Disponível em [link](https://github.com/orgs/compexjr/projects/1)
 - **Token:** Sistema de geração e validação de tokens JWT para acesso seguro aos endpoints.
 - **Gestão de Tarefas do Usuário:** Cada usuário pode criar e gerenciar sua lista de tarefas, permitindo uma organização de atividades de forma individualizada, alterando o status da tarefa entre "Em progresso" ou "Feita". Por padrão ela é criada como "À fazer".
 
-## Testes da aplicação back-end
+## Passos para criar uma novo componente
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+## Testes da aplicação front-end
 
 Existem vários tipos de testes de software que podem ser aplicados durante o processo de desenvolvimento para garantir a qualidade do software. Logo abaixo seguem os tipos de testes que deverão ser feitos para garantir a qualidade da nossa aplicação.
 
@@ -136,4 +85,12 @@ Existem vários tipos de testes de software que podem ser aplicados durante o pr
 
 ```bash
 pnpm test
+```
+
+### Testes E2E (End-to-End)
+
+Os testes E2E (End-to-End) são realizados para verificar o funcionamento completo de um sistema, desde o início até o fim. O objetivo é simular o comportamento real do usuário, garantindo que todos os componentes do sistema (frontend, backend, banco de dados, etc.) funcionem corretamente em conjunto. Esses testes ajudam a identificar problemas de integração e a validar fluxos de trabalho críticos. Geralmente, são executados por desenvolvedores ou equipes de QA.
+
+```bash
+pnpm test:e2e
 ```

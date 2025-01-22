@@ -35,6 +35,8 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
      ```bash
      pnpm dev
      ```
+Observação: 
+- Antes de executar a aplicação front-end, procure deixar a aplicação back-end executando para permitir os testes fim a fim (front-end->back-end, back-end->front-end).
 
 ## Funcionalidades
 

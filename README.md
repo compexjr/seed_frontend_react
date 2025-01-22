@@ -54,11 +54,11 @@ Este projeto é uma dashboard feito com ReactJS, que faz o gerenciamento de usu�
 
 ## Quadro de atividades Kanban
 
-Este projeto é dividido em diferentes tarefas conforme um fluxo de trabalho estruturado. Abaixo estão os passos para adicionar novos endpoints:
+Este projeto é dividido em diferentes tarefas conforme um fluxo de trabalho estruturado. Abaixo estão as tarefas salvas da equipe backend com os passos para adicionar novos endpoints:
 
-Disponível em [link](https://github.com/orgs/compexjr/projects/1)
+Quadro de Tarefas (Backend) disponível em [link](https://github.com/orgs/compexjr/projects/1)
 
-
+Quado de Tarefas (Frontend) disponível em [link](https://github.com/orgs/compexjr/projects/5)
 
 ## Regras de Negócio
 

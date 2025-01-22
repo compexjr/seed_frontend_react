@@ -1,10 +1,10 @@
 # Dashboard com ReactJS
 
-Este projeto é uma dashboard feito com ReactJS, que faz o gerenciamento de usuários, upload de arquivos e dashboard.
+Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](https://en.wikipedia.org/wiki/React_(software)), que faz o gerenciamento de usuários, upload de arquivos e dashboard integrado a aplicação web back-end [seed_backend](https://github.com/compexjr/seed_backend).
 
 ## Como usar
 
-1. **Você precisa ter o NodeJS instalado na sua máquina (recomendo a versão 20) e instalar o pnpm.**
+1. **Você precisa ter o [NodeJS](https://en.wikipedia.org/wiki/Node.js) instalado na sua máquina (recomendo a versão 20) e instalar o pnpm.**
    - No Windows/Linux/MacOS instale o pnpm:
       ```bash
       npm install pnpm -v
@@ -54,15 +54,15 @@ Este projeto é uma dashboard feito com ReactJS, que faz o gerenciamento de usu�
 
 ## Quadro de atividades Kanban
 
-Este projeto é dividido em diferentes tarefas conforme um fluxo de trabalho estruturado. Abaixo estão as tarefas salvas da equipe backend com os passos para adicionar novos endpoints:
+Este projeto é dividido em diferentes tarefas conforme um fluxo de trabalho estruturado. Abaixo estão as tarefas salvas da equipe back-end com os passos para adicionar novos endpoints:
 
-Quadro de Tarefas (Backend) disponível em [link](https://github.com/orgs/compexjr/projects/1)
+Quadro de Tarefas (Back-end) disponível em [link](https://github.com/orgs/compexjr/projects/1)
 
-Quado de Tarefas (Frontend) disponível em [link](https://github.com/orgs/compexjr/projects/5)
+Quado de Tarefas (Front-end) disponível em [link](https://github.com/orgs/compexjr/projects/5)
 
 ## Regras de Negócio
 
-- **Autenticação:** Login e logout de usuários com geração e validação de tokens JWT.
+- **Autenticação:** Login e logout de usuários com geração e validação de tokens [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token).
 - **CRUD de Usuários:** Criação, leitura, atualização e exclusão de usuários.
 - **Recuperação de Senha:** Processo seguro para redefinição de senha.
 - **Perfil de Usuário:** Permite aos usuários editar suas informações pessoais e gerenciar suas fotos de perfil.

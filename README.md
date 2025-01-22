@@ -89,10 +89,6 @@ Quadro de Tarefas (Front-end) disponível em [link](https://github.com/orgs/comp
 - **Token:** Sistema de geração e validação de tokens JWT para acesso seguro aos endpoints.
 - **Gestão de Tarefas do Usuário:** Cada usuário pode criar e gerenciar sua lista de tarefas, permitindo uma organização de atividades de forma individualizada, alterando o status da tarefa entre "Em progresso" ou "Feita". Por padrão ela é criada como "À fazer".
 
-## Passos para criar uma novo componente
-
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
 ## Testes da aplicação front-end
 
 Existem vários tipos de testes de software que podem ser aplicados durante o processo de desenvolvimento para garantir a qualidade do software. Logo abaixo seguem os tipos de testes que deverão ser feitos para garantir a qualidade da nossa aplicação.

@@ -14,20 +14,29 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
 
 ## Como usar
 
-1. **Você precisa ter o [NodeJS](https://en.wikipedia.org/wiki/Node.js) instalado na sua máquina (recomendo a versão 20) e instalar o pnpm.**
+1. **Você precisa ter o [NodeJS](https://en.wikipedia.org/wiki/Node.js) instalado na sua máquina para fazer o setup da aplicação.**
+   - Instale o Node.js na sua máquina no site oficial do [Node.js](https://nodejs.org/en).
    - No Windows/Linux/MacOS instale o pnpm:
-      ```bash
-      npm install pnpm -v
-      ```
+     ```bash
+     npm install pnpm -v
+     ```
+   - Clone a aplicação.
+     ```bash
+     git clone https://github.com/compexjr/seed_frontend_react
+     ```
+   - Vá para o diretório do projeto:
+     ```bash
+     cd seed_frontend_react
+     ```
    - Agora instale as depedências do projeto
      ```bash
      pnpm install
      ```
 
 2. **Crie o arquivo `.env` na raiz do projeto:**
-   - Crie um arquivo chamado `.env` no diretório raiz do seu projeto e adicione as variáveis necessárias, com valores padrão ou conforme orientação específica. Use o ".env.example" como exemplo. Exemplo:
+   - Crie um arquivo chamado `.env` no diretório raiz do seu projeto e adicione as variáveis necessárias, Exemplo:
      ```
-     ENV_BASE_URL=
+     ENV_DATABASE_URL=
      ```
 
 3. **Execute a aplicação:**
@@ -40,7 +49,7 @@ Observação:
 
 ## Aspectos Técnicos
 
-- Uso do React para criar componentes dinâmicos para criar aplicações HTML dinâmicas assíncronas
+- Uso do React para criar componentes dinâmicos para criar aplicações HTML dinâmicas assíncronas.
 - Uso do [TypeScript](https://en.wikipedia.org/wiki/TypeScript) para adicionar tipagem estática ao JavaScript, o que ajuda a prevenir erros comuns e torna o código mais robusto e confiável.
 - Mais detalhes sobre a stack escolhida em [link](TBD)
 

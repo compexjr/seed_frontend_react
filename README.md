@@ -76,7 +76,7 @@ Este projeto é dividido em diferentes tarefas conforme um fluxo de trabalho est
 
 Quadro de Tarefas (Back-end) disponível em [link](https://github.com/orgs/compexjr/projects/1)
 
-Quado de Tarefas (Front-end) disponível em [link](https://github.com/orgs/compexjr/projects/5)
+Quadro de Tarefas (Front-end) disponível em [link](https://github.com/orgs/compexjr/projects/5)
 
 ## Regras de Negócio
 

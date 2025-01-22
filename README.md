@@ -2,6 +2,16 @@
 
 Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](https://en.wikipedia.org/wiki/React_(software)), que faz o gerenciamento de usuários, upload de arquivos e dashboard integrado a aplicação web back-end [seed_backend](https://github.com/compexjr/seed_backend).
 
+## Casos de Uso
+
+* [Use Cases](https://github.com/compexjr/seed_frontend_react/blob/master/docs/imagens/usecases.png)
+* [Source](https://github.com/compexjr/seed_frontend_react/blob/master/docs/usecases.puml)
+
+## Arquitetura Base
+
+* [Arquitetura](https://github.com/compexjr/seed_frontend_react/blob/master/docs/imagens/arquitetura.png)
+* [Source](https://github.com/compexjr/seed_frontend_react/blob/master/docs/arquitetura.puml)
+
 ## Como usar
 
 1. **Você precisa ter o [NodeJS](https://en.wikipedia.org/wiki/Node.js) instalado na sua máquina (recomendo a versão 20) e instalar o pnpm.**
@@ -94,3 +104,13 @@ Os testes E2E (End-to-End) são realizados para verificar o funcionamento comple
 ```bash
 pnpm test:e2e
 ```
+
+## Referências
+
+* [Javascript](https://en.wikipedia.org/wiki/JavaScript)
+* [Node](https://nodejs.org/en)
+* [React](https://react.dev)
+* [JWT](https://jwt.io)
+* [PlantUML](https://plantuml.com)
+* [Editor PlantUML](https://plantuml-editor.kkeisuke.com)
+

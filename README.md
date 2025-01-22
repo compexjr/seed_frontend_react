@@ -36,7 +36,7 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
      pnpm dev
      ```
 Observação: 
-- Antes de executar a aplicação front-end, procure deixar a aplicação back-end executando para permitir os testes fim a fim (front-end->back-end, back-end->front-end).
+- Antes de executar a aplicação front-end, procure deixar a [aplicação back-end](https://github.com/compexjr/seed_backend) executando para permitir os testes fim a fim (front-end->back-end, back-end->front-end).
 
 ## Funcionalidades
 
@@ -115,4 +115,3 @@ pnpm test:e2e
 * [JWT](https://jwt.io)
 * [PlantUML](https://plantuml.com)
 * [Editor PlantUML](https://plantuml-editor.kkeisuke.com)
-

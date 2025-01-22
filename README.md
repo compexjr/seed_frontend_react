@@ -1,4 +1,4 @@
-# Dashboard com ReactJS
+# Protótipo de Aplicação Web Front-end modelo usando ReactJS
 
 Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](https://en.wikipedia.org/wiki/React_(software)), que faz o gerenciamento de usuários, upload de arquivos e dashboard integrado a aplicação web back-end [seed_backend](https://github.com/compexjr/seed_backend).
 

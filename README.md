@@ -38,6 +38,12 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
 Observação: 
 - Antes de executar a aplicação front-end, procure deixar a [aplicação back-end](https://github.com/compexjr/seed_backend) executando para permitir os testes fim a fim (front-end->back-end, back-end->front-end).
 
+## Aspectos Técnicos
+
+- Uso do React para criar componentes dinâmicos para criar aplicações HTML dinâmicas assíncronas
+- Uso do [TypeScript](https://en.wikipedia.org/wiki/TypeScript) para adicionar tipagem estática ao JavaScript, o que ajuda a prevenir erros comuns e torna o código mais robusto e confiável.
+- Mais detalhes sobre a stack escolhida em [link](TBD)
+
 ## Funcionalidades
 
 ### F1. Login do usuário
@@ -112,6 +118,7 @@ pnpm test:e2e
 * [Javascript](https://en.wikipedia.org/wiki/JavaScript)
 * [Node](https://nodejs.org/en)
 * [React](https://react.dev)
+* [Typescript](https://www.typescriptlang.org/)
 * [JWT](https://jwt.io)
 * [PlantUML](https://plantuml.com)
 * [Editor PlantUML](https://plantuml-editor.kkeisuke.com)

@@ -23,7 +23,9 @@ export function TasksTableItem({ task, index }: TasksTableItemProps) {
 
 			<TableCell>{formatDate(task.creation_date)}</TableCell>
 
-			<TableCell>{formatDate(task.conclusion_date) ?? "Indefinido"}</TableCell>
+			<TableCell>
+				{task.conclusion_date ? formatDate(task.conclusion_date) : "Indefinido"}
+			</TableCell>
 
 			<TableCell className="text-muted-foreground">
 				<TasksTableItemStatus>{task.status}</TasksTableItemStatus>

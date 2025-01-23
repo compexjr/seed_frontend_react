@@ -1,6 +1,11 @@
+import { Label } from "@/components/ui/label";
 import { Input } from "../components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
 export function SignUp() {
+	const navigate = useNavigate();
+
 	return (
 		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
 			<div className="flex flex-col gap-2">
@@ -11,29 +16,40 @@ export function SignUp() {
 			</div>
 
 			<div className="flex flex-col gap-2">
-				<Input
-					type="name"
-					id="name"
-					name="name"
-					placeholder="Digite seu nome"
-				/>
+				<div className="flex flex-col gap-2 text-left">
+					<Label>Nome</Label>
 
-				<Input
-					type="email"
-					id="email"
-					name="email"
-					placeholder="Digite seu email"
-				/>
+					<Input
+						type="text"
+						id="name"
+						name="name"
+						placeholder="Digite seu nome"
+					/>
+				</div>
 
-				<Input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="Digite sua senha"
-				/>
-				<button className="bg-black hover:opacity-90 h-10 w-full text-white rounded-lg text-sm font-medium">
-					Criar uma conta
-				</button>
+				<div className="flex flex-col gap-2 text-left">
+					<Label>Email</Label>
+
+					<Input
+						type="email"
+						id="email"
+						name="email"
+						placeholder="Digite seu email"
+					/>
+				</div>
+
+				<div className="flex flex-col gap-2 text-left">
+					<Label>Senha</Label>
+
+					<Input
+						type="password"
+						id="password"
+						name="password"
+						placeholder="Digite sua senha"
+					/>
+				</div>
+
+				<Button className="mt-2" onClick={() => navigate("/")}>Confirmar</Button>
 
 				<a href="/entrar" className="text-sm font-medium hover:underline">
 					Já possui uma conta? Conecte-se

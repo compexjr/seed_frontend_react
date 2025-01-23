@@ -1,6 +1,11 @@
+import { Label } from "@/components/ui/label";
 import { Input } from "../components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
 export function SignIn() {
+	const navigate = useNavigate();
+
 	return (
 		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
 			<div className="flex flex-col gap-2">
@@ -10,24 +15,32 @@ export function SignIn() {
 				</span>
 			</div>
 
-			<div className="flex flex-col gap-2">
-				<Input
-					type="email"
-					id="email"
-					name="email"
-					placeholder="Digite seu email"
-				/>
+			<div className="flex flex-col gap-4">
+				<div className="flex flex-col gap-2 text-left">
+					<Label>Email</Label>
 
-				<Input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="Digite sua senha"
-				/>
+					<Input
+						type="email"
+						id="email"
+						name="email"
+						placeholder="Digite seu email"
+					/>
+				</div>
 
-				<button className="bg-black hover:opacity-90 h-10 w-full text-white rounded-lg text-sm font-medium">
+				<div className="flex flex-col gap-2 text-left">
+					<Label>Senha</Label>
+
+					<Input
+						type="password"
+						id="password"
+						name="password"
+						placeholder="Digite sua senha"
+					/>
+				</div>
+
+				<Button className="mt-2" onClick={() => navigate("/")}>
 					Entrar
-				</button>
+				</Button>
 
 				<a href="/cadastro" className="text-sm font-medium hover:underline">
 					Não possui uma conta? Cadastre-se

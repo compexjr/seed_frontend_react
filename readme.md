@@ -2,6 +2,18 @@
 
 Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](https://en.wikipedia.org/wiki/React_(software)), que faz o gerenciamento de usuários, upload de arquivos e dashboard integrado a aplicação web back-end [seed_backend](https://github.com/compexjr/seed_backend).
 
+## Índice
+
+1. [Casos de Uso](#casos-de-uso)  
+2. [Arquitetura Base](#arquitetura-base)  
+3. [Como usar](#como-usar)  
+4. [Features Básicas](#features-básicas)  
+5. [Aspectos Técnicos](#aspectos-técnicos)  
+6. [Quadro de atividades Kanban](#quadro-de-atividades-kanban)  
+7. [Regras de Negócio](#regras-de-negócio)  
+8. [Testes da aplicação front-end](#testes-da-aplicação-front-end)  
+9. [Referências](#referências)
+
 ## Casos de Uso
 
 * [Use Cases](https://github.com/compexjr/seed_frontend_react/blob/master/docs/imagens/usecases.png)

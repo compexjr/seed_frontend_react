@@ -94,7 +94,7 @@ Quadro de Tarefas (Front-end) disponível em [link](https://github.com/orgs/comp
 - **Recuperação de Senha:** Processo seguro para redefinição de senha.
 - **Perfil de Usuário:** Permite aos usuários editar suas informações pessoais e gerenciar suas fotos de perfil.
 - **Arquivos do Usuário:** Upload e gestão de imagens dos usuários.
-- **Dashboard:** Endpoint para recuperação de informações gerais sobre o sistema.
+- **Dashboard:** Exibição de informações gerais sobre o sistema.
 - **Token:** Sistema de geração e validação de tokens JWT para acesso seguro aos endpoints.
 - **Gestão de Tarefas do Usuário:** Cada usuário pode criar e gerenciar sua lista de tarefas, permitindo uma organização de atividades de forma individualizada, alterando o status da tarefa entre "Em progresso" ou "Feita". Por padrão ela é criada como "À fazer".
 

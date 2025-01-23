@@ -47,37 +47,24 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
 Observação: 
 - Antes de executar a aplicação front-end, procure deixar a [aplicação back-end](https://github.com/compexjr/seed_backend) executando para permitir os testes fim a fim (front-end->back-end, back-end->front-end).
 
+## Features Básicas
+
+1. F1. Login
+2. F2. Logout
+3. F3. Registro de novo usuário
+4. F4. Recuperar senha
+5. F5. Gerenciar Dashboard
+6. F6. Gerenciar Profile do usuário
+7. F7. Gerenciar Tarefas do usuário
+8. F8. Gerenciar Imagens do usuário
+9. F9. Gerenciar Relatórios de Tarefas do usuário
+10. F10. Gerenciar Gráficos das Tarefas
+
 ## Aspectos Técnicos
 
 - Uso do React para criar componentes dinâmicos para criar aplicações HTML dinâmicas assíncronas.
 - Uso do [TypeScript](https://en.wikipedia.org/wiki/TypeScript) para adicionar tipagem estática ao JavaScript, o que ajuda a prevenir erros comuns e torna o código mais robusto e confiável.
-- Mais detalhes sobre a stack escolhida em [link](TBD)
-
-## Funcionalidades
-
-### F1. Login do usuário
-- Autenticação de usuários com geração de token JWT.
-
-### F2. Logout do usuário
-- Invalidar tokens de autenticação, garantindo a segurança do acesso.
-
-### F3. Registro de novo usuário
-- Endpoint para registrar novos usuários no sistema.
-
-### F4. Recuperar senha do usuário/ Alterar senha do usuário
-- Recuperação de senha através de email, com redefinição segura ou alteração de senha de um usuário devidamente autenticado.
-
-### F5. Perfil do usuário
-- Edição de informações do perfil do usuário, incluindo a alteração de fotos de perfil.
-
-### F6. Arquivos (imagens, áudios e vídeos) do usuário
-- Upload, visualização e gerenciamento de arquivos de mídia (imagens) dos usuários.
-
-### F7. Lista de Tarefas do Usuário
-- Gerenciamento de uma lista de tarefas individuais para cada usuário.
-- Adicionar novas tarefas, com campos para descrição e prazo.
-- Atualizar status de cada tarefa como "Pendente", "Em Progresso" ou "Concluída".
-- Visualização e organização das tarefas em um formato de quadro, semelhante ao "board" de cards do GitHub, permitindo fácil atualização de status e organização das atividades.
+- Mais detalhes sobre a stack escolhida em [link](https://github.com/compexjr/seed_frontend_react/blob/master/stack.md)
 
 ## Quadro de atividades Kanban
 
@@ -124,6 +111,8 @@ pnpm test:e2e
 * [Node](https://nodejs.org/en)
 * [React](https://react.dev)
 * [Typescript](https://www.typescriptlang.org/)
+* [Vite](https://vite.dev/)
+* [Shadcn/ui](https://ui.shadcn.com/)
 * [JWT](https://jwt.io)
 * [PlantUML](https://plantuml.com)
 * [Editor PlantUML](https://plantuml-editor.kkeisuke.com)

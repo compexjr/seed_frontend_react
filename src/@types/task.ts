@@ -4,6 +4,6 @@ export interface Task {
 	title: string;
 	description: string;
 	creation_date: string;
-	conclusion_date: string;
+	conclusion_date: string | null;
 	status: string;
 }

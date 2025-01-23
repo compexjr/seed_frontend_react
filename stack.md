@@ -26,6 +26,11 @@ Abaixo, descrevemos cada componente da stack e como eles se integram para criar 
 * **Estilo baseado em classes:** Cada classe aplica um único estilo, permitindo o design de componentes diretamente no HTML/JSX.
 * **Complemento com tailwind-merge:** O pacote `tailwind-merge` é usado para combinar classes do Tailwind, evitando conflitos de estilo.
 
+### shadcn
+* **Componentes de UI:** Uma coleção de componentes acessíveis e altamente customizáveis, construídos sobre Radix UI e Tailwind CSS.
+* **Facilidade de uso:** Componentes prontos para uso, permitindo criação rápida de interfaces com design moderno.
+* **Extensível e modular:** Permite personalização total dos componentes para atender às necessidades específicas da aplicação.
+
 ### @tanstack/react-query
 * **Gerenciamento de estado do servidor:** Uma biblioteca poderosa para lidar com requisições de API e cache de dados de forma eficiente.
 * **Sincronização automática:** Atualiza os dados automaticamente com base no estado do servidor.
@@ -54,7 +59,7 @@ Abaixo, descrevemos cada componente da stack e como eles se integram para criar 
 1. **React com Vite:** O React cria a estrutura base da aplicação, enquanto o Vite agiliza o desenvolvimento e o processo de build.
 2. **React Router:** Gerencia a navegação entre diferentes páginas da aplicação sem recarregar a página.
 3. **@tanstack/react-query e Axios:** Trabalham juntos para buscar e gerenciar dados de APIs externas.
-4. **Tailwind CSS e Lucide React:** Proporcionam uma interface visual estilosa, com ícones modernos e estilos responsivos.
+4. **Tailwind CSS e shadcn:** Proporcionam uma interface visual estilosa, com componentes prontos para uso e estilos responsivos.
 5. **ESLint e TypeScript:** Garantem um código limpo e confiável, com tipagem estática e validações automáticas.
 
 ## Em resumo:
@@ -62,7 +67,7 @@ Abaixo, descrevemos cada componente da stack e como eles se integram para criar 
 * **React e Vite:** Criam uma aplicação moderna e rápida.
 * **React Router:** Gerencia a navegação da aplicação.
 * **Axios e React Query:** Facilitam a integração com APIs externas.
-* **Tailwind CSS:** Garante uma interface responsiva e estilosa.
+* **Tailwind CSS e shadcn:** Garantem uma interface responsiva e estilosa.
 * **TypeScript e ESLint:** Aumentam a confiabilidade e a qualidade do código.
 
 Essa stack é ideal para criar aplicações web modernas, escaláveis e de alta performance, focadas na experiência do usuário e na eficiência do desenvolvimento.

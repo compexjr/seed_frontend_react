@@ -27,7 +27,7 @@ export function Menu() {
 					</Button>
 
 					<div className="flex flex-col text-sm">
-						<strong>Izaías Lima</strong>
+						<strong>Izaías Morais</strong>
 						<span>izaiaslima356@gmail.com</span>
 					</div>
 				</div>
@@ -35,24 +35,26 @@ export function Menu() {
 
 			<DropdownMenuContent className="w-56 mr-4">
 				<DropdownMenuGroup>
-					<DropdownMenuItem className="cursor-pointer">
-						<UserPen className="mr-2 h-4 w-4" />
-						<span>Perfil</span>
-					</DropdownMenuItem>
-				</DropdownMenuGroup>
+					<NavLink to="/perfil" className="flex items-center">
+						<DropdownMenuItem className="cursor-pointer  w-full">
+							<UserPen className="h-4 w-4" />
+							<span>Perfil</span>
+						</DropdownMenuItem>
+					</NavLink>
 
-				<DropdownMenuGroup>
-					<DropdownMenuItem className="cursor-pointer">
-						<KeyRound className="mr-2 h-4 w-4" />
-						<span>Alterar Senha</span>
-					</DropdownMenuItem>
-				</DropdownMenuGroup>
+					<NavLink to="/alterar-senha" className="flex items-center">
+						<DropdownMenuItem className="cursor-pointer w-full">
+							<KeyRound className="h-4 w-4" />
+							<span>Alterar Senha</span>
+						</DropdownMenuItem>
+					</NavLink>
 
-				<DropdownMenuGroup>
-					<DropdownMenuItem className="cursor-pointer">
-						<Settings className="mr-2 h-4 w-4" />
-						<span>Configurações</span>
-					</DropdownMenuItem>
+					<NavLink to="/configuracoes" className="flex items-center">
+						<DropdownMenuItem className="cursor-pointer w-full">
+							<Settings className="h-4 w-4" />
+							<span>Configurações</span>
+						</DropdownMenuItem>
+					</NavLink>
 				</DropdownMenuGroup>
 
 				<DropdownMenuSeparator />

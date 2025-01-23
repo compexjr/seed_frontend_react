@@ -8,6 +8,8 @@ import { Images } from "@/pages/images";
 import { Settings } from "@/pages/settings";
 import { SignUp } from "@/pages/sign-up";
 import { SignIn } from "@/pages/sign-in";
+import { Profile } from "@/pages/profile";
+import { ChangePassword } from "@/pages/change-password";
 
 export function AppRoutes() {
 	return (
@@ -16,6 +18,8 @@ export function AppRoutes() {
 				<Route index element={<Dashboard />} />
 				<Route path="imagens" element={<Images />} />
 				<Route path="configuracoes" element={<Settings />} />
+				<Route path="perfil" element={<Profile />} />
+				<Route path="alterar-senha" element={<ChangePassword />} />
 			</Route>
 
 			<Route element={<AuthLayout />}>

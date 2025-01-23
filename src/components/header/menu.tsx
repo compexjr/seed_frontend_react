@@ -42,13 +42,6 @@ export function Menu() {
 						</DropdownMenuItem>
 					</NavLink>
 
-					<NavLink to="/alterar-senha" className="flex items-center">
-						<DropdownMenuItem className="cursor-pointer w-full">
-							<KeyRound className="h-4 w-4" />
-							<span>Alterar Senha</span>
-						</DropdownMenuItem>
-					</NavLink>
-
 					<NavLink to="/configuracoes" className="flex items-center">
 						<DropdownMenuItem className="cursor-pointer w-full">
 							<Settings className="h-4 w-4" />

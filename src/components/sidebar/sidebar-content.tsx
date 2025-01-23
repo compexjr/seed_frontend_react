@@ -1,4 +1,4 @@
-import { Home, Image, Settings, Users } from "lucide-react";
+import { FileChartColumn, Home, Image, Settings } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 
 export function SidebarContent() {
@@ -19,6 +19,12 @@ export function SidebarContent() {
 					title="Imagens"
 					href="/imagens"
 					icon={<Image size={20} strokeWidth={1.5} />}
+				/>
+
+				<SidebarItem
+					title="Relatórios"
+					href="/relatorios"
+					icon={<FileChartColumn size={20} strokeWidth={1.5} />}
 				/>
 
 				<SidebarItem

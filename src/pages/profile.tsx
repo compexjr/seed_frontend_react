@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function Profile() {
 	return (
@@ -21,11 +22,7 @@ export function Profile() {
 
 			<CardContent>
 				<div className="flex items-center gap-4">
-					<img
-						src="https://www.github.com/izaiasmorais.png"
-						alt="User Avatar"
-						className="w-28 h-2w-28 rounded-full"
-					/>
+					<Skeleton className="w-28 h-28 rounded-full bg-slate-50" />
 
 					<div>
 						<p className="text-sm">

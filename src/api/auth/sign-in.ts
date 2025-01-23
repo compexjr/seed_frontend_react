@@ -1,5 +1,5 @@
-import { HttpResponse } from "../@types/http";
-import { api } from "../services/axios";
+import { HttpResponse } from "../../@types/http";
+import { api } from "../../services/axios";
 
 interface SignInPayload {
 	email: string;
@@ -17,7 +17,7 @@ export async function signIn({
 	password,
 }: SignInPayload): Promise<SignInResponse | undefined> {
 	try {
-		const response = await api.get<SignInResponse>("/auth/sign", {
+		const response = await api.get<SignInResponse>("/auth/sign-in", {
 			params: {
 				email,
 				password,

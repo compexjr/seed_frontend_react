@@ -1,4 +1,4 @@
-import { KeyRound, LogOut, Settings, User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router";
 import { Avatar } from "./avatar";
 import { Button } from "../ui/button";
@@ -52,16 +52,15 @@ export function Menu() {
 
 				<DropdownMenuSeparator />
 
-				<DropdownMenuItem
-					className="cursor-pointer"
-					asChild
-					onClick={handleLogout}
-				>
-					<NavLink to="/entrar" className="flex items-center">
-						<LogOut className="mr-2 h-4 w-4" />
+				<NavLink to="/entrar" className="flex items-center">
+					<DropdownMenuItem
+						className="cursor-pointer w-full"
+						onClick={handleLogout}
+					>
+						<LogOut className="h-4 w-4" />
 						<span>Sair</span>
-					</NavLink>
-				</DropdownMenuItem>
+					</DropdownMenuItem>
+				</NavLink>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);

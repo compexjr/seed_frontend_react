@@ -1,7 +1,9 @@
+import { TasksTable } from "@/components/tasks/tasks-table";
+
 export function Dashboard() {
 	return (
-		<div>
-			<h1>Dashboard</h1>
-		</div>
+		<main className="flex flex-col gap-4">
+			<TasksTable />
+		</main>
 	);
 }

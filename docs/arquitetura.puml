@@ -11,10 +11,10 @@
 !include DEVICONS/javascript.puml
 
 Person(user, "User")
-Container(web_client, "Browser", "html", "The main interface that the customer interacts with", $sprite="html5") 
+Container(web_client, "Browser", "html", "The main interface that the customer interacts with", $sprite="html5")
 
-System_Boundary(c1, "MyAPP Web Aplication") {    
-    Container(frontend, "Front-end Application", "Javascript, React", "Allows users to manage app", $sprite="python")
+System_Boundary(c1, "MyAPP Web Aplication") {
+    Container(frontend, "Front-end Application", "Javascript, React", "Allows users to manage app", $sprite="javascript")
     Container(web_app, "Back-end Application", "Python, FastAPI", "Allows users to manage app", $sprite="python")
     ContainerDb(db, "Database", "SQlite", "Holds users and images information", $sprite="sqllite")
     Container(archive, "Archive", "File Images")

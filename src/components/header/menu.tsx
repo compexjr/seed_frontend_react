@@ -1,4 +1,4 @@
-import { KeyRound, LogOut, Settings, UserPen } from "lucide-react";
+import { KeyRound, LogOut, Settings, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router";
 import { Avatar } from "./avatar";
 import { Button } from "../ui/button";
@@ -37,7 +37,7 @@ export function Menu() {
 				<DropdownMenuGroup>
 					<NavLink to="/perfil" className="flex items-center">
 						<DropdownMenuItem className="cursor-pointer  w-full">
-							<UserPen className="h-4 w-4" />
+							<User className="h-4 w-4" />
 							<span>Perfil</span>
 						</DropdownMenuItem>
 					</NavLink>

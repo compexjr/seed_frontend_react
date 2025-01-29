@@ -1,6 +1,7 @@
 import { Plus, Search, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { NavLink } from "react-router";
 
 export function TasksTableFilters() {
 	return (
@@ -24,10 +25,12 @@ export function TasksTableFilters() {
 				</Button>
 			</div>
 
-			<Button type="button" className="flex items-center gap-2">
-				<Plus className="w-5 h-5" />
-				Adicionar tarefa
-			</Button>
+			<NavLink to="/adicionar-tarefa">
+				<Button type="button" className="flex items-center gap-2">
+					<Plus className="w-5 h-5" />
+					Adicionar tarefa
+				</Button>
+			</NavLink>
 		</form>
 	);
 }

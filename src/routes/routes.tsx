@@ -10,12 +10,14 @@ import { SignUp } from "@/pages/sign-up";
 import { SignIn } from "@/pages/sign-in";
 import { Profile } from "@/pages/profile";
 import { Reports } from "@/pages/reports";
+import { CreateImage } from "@/pages/create-image";
 
 export function AppRoutes() {
 	return (
 		<Routes>
 			<Route element={<AppLayout />}>
 				<Route index element={<Dashboard />} />
+				<Route path="adicionar-tarefa" element={<CreateImage />} />
 				<Route path="imagens" element={<Images />} />
 				<Route path="relatorios" element={<Reports />} />
 				<Route path="configuracoes" element={<Settings />} />

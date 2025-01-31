@@ -30,7 +30,7 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
    - Instale o Node.js na sua máquina no site oficial do [Node.js](https://nodejs.org/en).
    - No Windows/Linux/MacOS instale o pnpm:
      ```bash
-     npm install pnpm -v
+     npm install pnpm -g
      ```
    - Clone a aplicação.
      ```bash

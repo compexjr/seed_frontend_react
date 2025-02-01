@@ -41,7 +41,7 @@ export function Settings() {
 				</div>
 			</CardContent>
 
-			<CardFooter className="flex p-4 justify-end border-t bg-slate-50">
+			<CardFooter className="flex p-4 justify-end border-t bg-muted">
 				<Button>Confirmar</Button>
 			</CardFooter>
 		</Card>

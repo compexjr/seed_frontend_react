@@ -17,7 +17,7 @@ export function SidebarItem({
 	const { pathname } = useLocation();
 
 	const style = pathname.endsWith(href)
-		? "bg-slate-100 text-slate-900"
+		? "bg-muted text-slate-900 dark:text-white"
 		: "tex-muted";
 
 	return (

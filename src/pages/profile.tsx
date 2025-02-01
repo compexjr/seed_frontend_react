@@ -22,7 +22,7 @@ export function Profile() {
 
 			<CardContent>
 				<div className="flex items-center gap-4">
-					<Skeleton className="w-28 h-28 rounded-full bg-slate-50" />
+					<Skeleton className="w-28 h-28 rounded-full bg-muted" />
 
 					<div>
 						<p className="text-sm">
@@ -54,7 +54,7 @@ export function Profile() {
 				</div>
 			</CardContent>
 
-			<CardFooter className="flex p-4 justify-end border-t bg-slate-50">
+			<CardFooter className="flex p-4 justify-end border-t bg-muted">
 				<Button>Confirmar</Button>
 			</CardFooter>
 		</Card>

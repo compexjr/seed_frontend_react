@@ -7,8 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SquareCheck, User } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { SquareCheck } from "lucide-react";
 
 export function CreateImage() {
 	return (
@@ -44,7 +43,7 @@ export function CreateImage() {
 				</div>
 			</CardContent>
 
-			<CardFooter className="flex p-4 justify-end border-t bg-slate-50">
+			<CardFooter className="flex p-4 justify-end border-t bg-muted">
 				<Button>Salvar</Button>
 			</CardFooter>
 		</Card>

@@ -2,12 +2,12 @@ import { Button } from "../ui/button";
 import { DialogContent } from "../ui/dialog";
 import { TriangleAlert } from "lucide-react";
 
-interface DeleteTaskDialogProps {
-	taskId: string;
+interface DeleteImageDialogProps {
+	imageId: string;
 }
 
-export function DeleteTaskDialog({ taskId }: DeleteTaskDialogProps) {
-	console.log(taskId);
+export function DeleteImageDialog({ imageId }: DeleteImageDialogProps) {
+	console.log(imageId);
 
 	return (
 		<DialogContent className="w-[400px]">
@@ -28,7 +28,6 @@ export function DeleteTaskDialog({ taskId }: DeleteTaskDialogProps) {
 					variant="destructive"
 					className="w-full mt-4"
 				>
-					{/* {isLoading && <LoaderCircle className="animate-spin" />} */}
 					Excluir tarefa
 				</Button>
 			</div>

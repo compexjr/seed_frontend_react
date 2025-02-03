@@ -1,4 +1,4 @@
-export function TasksTableEmptyState() {
+export function EmptyState() {
 	return (
 		<div className="flex w-full items-center justify-center h-[300px] text-center">
 			<div className="flex flex-col w-[400px]">

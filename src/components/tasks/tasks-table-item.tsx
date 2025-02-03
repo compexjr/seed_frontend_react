@@ -19,7 +19,9 @@ export function TasksTableItem({ task, index }: TasksTableItemProps) {
 
 			<TableCell className="font-medium">{task.title}</TableCell>
 
-			<TableCell> {task.description}</TableCell>
+			<TableCell className="text-muted-foreground">
+				{task.description}
+			</TableCell>
 
 			<TableCell>{formatDate(task.creation_date)}</TableCell>
 

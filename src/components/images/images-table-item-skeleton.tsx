@@ -3,8 +3,8 @@ import { TableCell, TableRow } from "../ui/table";
 import { Skeleton } from "../ui/skeleton";
 import { Button } from "../ui/button";
 
-export function TasksTableSkeleton() {
-	return Array.from({ length: 10 }).map((_, index) => {
+export function ImagesTableItemSkeleton() {
+	return Array.from({ length: 5 }).map((_, index) => {
 		return (
 			<TableRow key={index}>
 				<TableCell>
@@ -12,23 +12,15 @@ export function TasksTableSkeleton() {
 				</TableCell>
 
 				<TableCell>
-					<Skeleton className="h-4 w-[170px]" />
+					<Skeleton className="w-16 h-16" />
 				</TableCell>
 
-				<TableCell>
-					<Skeleton className="h-4 w-[170px]" />
-				</TableCell>
-
-				<TableCell>
-					<Skeleton className="h-4 w-[150px]" />
-				</TableCell>
-
-				<TableCell>
-					<Skeleton className="h-4 w-[150px]" />
-				</TableCell>
-				
 				<TableCell>
 					<Skeleton className="h-4 w-[100px]" />
+				</TableCell>
+
+				<TableCell>
+					<Skeleton className="h-4 w-[200px]" />
 				</TableCell>
 
 				<TableCell>

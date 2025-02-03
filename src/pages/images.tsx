@@ -1,7 +1,9 @@
+import { ImagesTable } from "@/components/images/images-table";
+
 export function Images() {
 	return (
-		<div>
-			<h1>Images</h1>
-		</div>
+		<main className="flex flex-col gap-4">
+			<ImagesTable />
+		</main>
 	);
 }

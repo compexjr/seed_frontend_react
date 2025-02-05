@@ -19,7 +19,7 @@ export function AppRoutes() {
 		<Routes>
 			<Route element={<AuthLayout />}>
 				<Route path="entrar" element={<SignIn />} />
-				<Route path="cadastro" element={<SignUp />} />
+				<Route path="criar-conta" element={<SignUp />} />
 			</Route>
 
 			<Route element={<AppLayout />}>

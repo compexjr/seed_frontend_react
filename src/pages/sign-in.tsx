@@ -59,7 +59,7 @@ export function SignIn() {
 					Entrar
 				</Button>
 
-				<a href="/cadastro" className="text-sm font-medium hover:underline">
+				<a href="/criar-conta" className="text-sm font-medium hover:underline">
 					Não possui uma conta? Cadastre-se
 				</a>
 			</div>

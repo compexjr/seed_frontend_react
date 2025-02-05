@@ -12,6 +12,7 @@ import { Profile } from "@/pages/profile";
 import { Reports } from "@/pages/reports";
 import { AddTask } from "@/pages/add-task";
 import { AddImage } from "@/pages/add-image";
+import { NotFound } from "@/pages/not-found";
 
 export function AppRoutes() {
 	return (
@@ -30,6 +31,9 @@ export function AppRoutes() {
 				<Route path="entrar" element={<SignIn />} />
 				<Route path="cadastro" element={<SignUp />} />
 			</Route>
+
+			{/* 🔴 404 Route - Catch-all for undefined routes */}
+			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);
 }

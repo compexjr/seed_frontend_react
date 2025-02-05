@@ -1,12 +1,10 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useNavigate, useSearchParams } from "react-router";
+import { useSearchParams, Link } from "react-router";
 import { useState, useEffect } from "react";
 
 export function SignIn() {
-	const navigate = useNavigate();
-
 	const [searchParams] = useSearchParams();
 	const [email, setEmail] = useState("");
 
@@ -52,12 +50,11 @@ export function SignIn() {
 					/>
 				</div>
 
-				<Button
-					className="mt-2 bg-zinc-950 hover:bg-zinc-900 text-white"
-					onClick={() => navigate("/")}
-				>
-					Entrar
-				</Button>
+				<Link to="/" className="w-full">
+					<Button className="mt-2 w-full bg-zinc-950 hover:bg-zinc-900 text-white">
+						Entrar
+					</Button>
+				</Link>
 
 				<a href="/criar-conta" className="text-sm font-medium hover:underline">
 					Não possui uma conta? Cadastre-se

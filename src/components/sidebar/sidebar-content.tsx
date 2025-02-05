@@ -22,12 +22,6 @@ export function SidebarContent() {
 				/>
 
 				<SidebarItem
-					title="Relatórios"
-					href="/relatorios"
-					icon={<FileChartColumn size={20} strokeWidth={1.5} />}
-				/>
-
-				<SidebarItem
 					title="Configurações"
 					href="/configuracoes"
 					icon={<Settings size={20} strokeWidth={1.5} />}

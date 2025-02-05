@@ -17,6 +17,11 @@ import { NotFound } from "@/pages/not-found";
 export function AppRoutes() {
 	return (
 		<Routes>
+			<Route element={<AuthLayout />}>
+				<Route path="entrar" element={<SignIn />} />
+				<Route path="cadastro" element={<SignUp />} />
+			</Route>
+
 			<Route element={<AppLayout />}>
 				<Route index element={<Dashboard />} />
 				<Route path="adicionar-tarefa" element={<AddTask />} />
@@ -27,12 +32,6 @@ export function AppRoutes() {
 				<Route path="perfil" element={<Profile />} />
 			</Route>
 
-			<Route element={<AuthLayout />}>
-				<Route path="entrar" element={<SignIn />} />
-				<Route path="cadastro" element={<SignUp />} />
-			</Route>
-
-			{/* 🔴 404 Route - Catch-all for undefined routes */}
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);

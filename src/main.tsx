@@ -5,6 +5,7 @@ import { AppRoutes } from "./routes/routes";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./services/react-query";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { Toaster } from "sonner";
 
 import "./index.css";
 
@@ -16,6 +17,8 @@ createRoot(document.getElementById("root")!).render(
 					<AppRoutes />
 				</ThemeProvider>
 			</QueryClientProvider>
+
+			<Toaster richColors />
 		</BrowserRouter>
 	</StrictMode>
 );

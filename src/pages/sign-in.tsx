@@ -1,16 +1,27 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
+import { useState, useEffect } from "react";
 
 export function SignIn() {
 	const navigate = useNavigate();
 
+	const [searchParams] = useSearchParams();
+	const [email, setEmail] = useState("");
+
+	useEffect(() => {
+		const emailFromQuery = searchParams.get("email");
+		if (emailFromQuery) {
+			setEmail(emailFromQuery);
+		}
+	}, [searchParams]);
+
 	return (
-		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
+		<div className="flex flex-col gap-8 text-center w-full max-w-[350px] rounded-lg">
 			<div className="flex flex-col gap-2">
 				<h2 className="text-2xl font-bold">Conecte-se</h2>
-				<span className="text-sm text-gray-400">
+				<span className="text-sm text-muted-foreground">
 					Digite seu email e senha abaixo para entrar
 				</span>
 			</div>
@@ -23,7 +34,10 @@ export function SignIn() {
 						type="email"
 						id="email"
 						name="email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
 						placeholder="Digite seu email"
+						className="ring-red-500!"
 					/>
 				</div>
 
@@ -38,7 +52,10 @@ export function SignIn() {
 					/>
 				</div>
 
-				<Button className="mt-2" onClick={() => navigate("/")}>
+				<Button
+					className="mt-2 bg-zinc-950 hover:bg-zinc-900 text-white"
+					onClick={() => navigate("/")}
+				>
 					Entrar
 				</Button>
 

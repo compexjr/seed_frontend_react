@@ -11,9 +11,17 @@ import {
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useAuthStore } from "@/stores/auth";
+import { ProfileSkeleton } from "./profile-skeleton";
+import { useQuery } from "@tanstack/react-query";
+import { getProfile } from "@/api/auth/get-profile";
 
 export function Menu() {
 	const { logout } = useAuthStore();
+
+	const { data, isPending } = useQuery({
+		queryFn: getProfile,
+		queryKey: ["profile"],
+	});
 
 	return (
 		<DropdownMenu>
@@ -23,10 +31,14 @@ export function Menu() {
 						<Avatar src="" fall="IM" />
 					</Button>
 
-					<div className="flex flex-col text-sm">
-						<strong>Izaías Morais</strong>
-						<span>izaiaslima356@gmail.com</span>
-					</div>
+					{isPending && <ProfileSkeleton />}
+
+					{!isPending && data && (
+						<div className="flex flex-col text-sm">
+							<strong>{data.name}</strong>
+							<span className="w-[200px]">{data.email}</span>
+						</div>
+					)}
 				</div>
 			</DropdownMenuTrigger>
 

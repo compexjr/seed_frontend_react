@@ -1,17 +1,17 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useSearchParams, Link, useNavigate } from "react-router";
-import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router";
+import { useEffect } from "react";
 import { useForm, type SubmitErrorHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "@/api/auth/sign-in";
 import { toast } from "sonner";
 import { AxiosResponse } from "axios";
-import { z } from "zod";
 import { LoaderCircle } from "lucide-react";
 import { useAuthStore } from "@/stores/auth";
+import { z } from "zod";
 
 const signInFormSchema = z.object({
 	email: z.string().email("Digite um email válido."),

@@ -3,15 +3,15 @@ import Cookies from "js-cookie";
 
 interface AuthState {
 	isAuthenticated: boolean;
-	login: () => void;
+	authenticate: (auth_token: string) => void;
 	logout: () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
 	isAuthenticated: !!Cookies.get("auth_token"),
 
-	login: () => {
-		Cookies.set("auth_token", "example_token", { expires: 1, secure: true });
+	authenticate: (auth_token) => {
+		Cookies.set("auth_token", auth_token, { expires: 1, secure: true });
 		set({ isAuthenticated: true });
 	},
 

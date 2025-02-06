@@ -1,19 +1,78 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useSearchParams, Link } from "react-router";
+import { useSearchParams, Link, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
+import { useForm, type SubmitErrorHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { signIn } from "@/api/auth/sign-in";
+import { toast } from "sonner";
+import { AxiosResponse } from "axios";
+import { z } from "zod";
+import { LoaderCircle } from "lucide-react";
+import { useAuthStore } from "@/stores/auth";
+
+const signInFormSchema = z.object({
+	email: z.string().email("Digite um email válido."),
+	password: z.string().min(1, "A senha é obrigatória."),
+});
+
+export type SignInFormData = z.infer<typeof signInFormSchema>;
 
 export function SignIn() {
+	const { authenticate } = useAuthStore();
 	const [searchParams] = useSearchParams();
-	const [email, setEmail] = useState("");
+	const navigate = useNavigate();
+
+	const { handleSubmit, register, setValue } = useForm<SignInFormData>({
+		defaultValues: {
+			email: "",
+			password: "",
+		},
+		resolver: zodResolver(signInFormSchema),
+	});
 
 	useEffect(() => {
 		const emailFromQuery = searchParams.get("email");
 		if (emailFromQuery) {
-			setEmail(emailFromQuery);
+			setValue("email", emailFromQuery);
 		}
 	}, [searchParams]);
+
+	const { mutate: signInFn, isPending } = useMutation({
+		mutationFn: signIn,
+		mutationKey: ["signIn"],
+		onError: (error: AxiosResponse) => {
+			// @ts-ignore
+			if (error.response.data.detail === "User already registered") {
+				toast.error("Este email já está em uso.");
+			}
+		},
+
+		onSuccess: (response) => {
+			if (response?.token) {
+				authenticate(response.token);
+				navigate("/");
+			}
+		},
+	});
+
+	const onFormError: SubmitErrorHandler<SignInFormData> = (errors) => {
+		if (errors.email) {
+			toast.error(errors.email.message);
+			return;
+		}
+
+		if (errors.password) {
+			toast.error(errors.password.message);
+			return;
+		}
+	};
+
+	function handleSignIn(data: SignInFormData) {
+		signInFn(data);
+	}
 
 	return (
 		<div className="flex flex-col gap-8 text-center w-full max-w-[350px] rounded-lg">
@@ -24,42 +83,47 @@ export function SignIn() {
 				</span>
 			</div>
 
-			<div className="flex flex-col gap-4">
+			<form
+				onSubmit={handleSubmit(handleSignIn, onFormError)}
+				className="flex flex-col gap-4"
+			>
 				<div className="flex flex-col gap-2 text-left">
-					<Label>Email</Label>
+					<Label htmlFor="email">Email</Label>
 
 					<Input
 						type="email"
 						id="email"
-						name="email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
 						placeholder="Digite seu email"
-						className="ring-red-500!"
+						required
+						{...register("email")}
 					/>
 				</div>
 
 				<div className="flex flex-col gap-2 text-left">
-					<Label>Senha</Label>
+					<Label htmlFor="password">Senha</Label>
 
 					<Input
 						type="password"
 						id="password"
-						name="password"
+						required
 						placeholder="Digite sua senha"
+						{...register("password")}
 					/>
 				</div>
 
-				<Link to="/" className="w-full">
-					<Button className="mt-2 w-full bg-zinc-950 hover:bg-zinc-900 text-white">
-						Entrar
-					</Button>
-				</Link>
+				<Button
+					type="submit"
+					className="mt-2 w-full bg-zinc-950 hover:bg-zinc-900 text-white"
+				>
+					{isPending && <LoaderCircle className="animate-spin" />}
+
+					{!isPending && "Entrar"}
+				</Button>
 
 				<a href="/criar-conta" className="text-sm font-medium hover:underline">
 					Não possui uma conta? Cadastre-se
 				</a>
-			</div>
+			</form>
 		</div>
 	);
 }

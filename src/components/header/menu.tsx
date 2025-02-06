@@ -1,5 +1,5 @@
 import { LogOut, Settings, User } from "lucide-react";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import { Avatar } from "./avatar";
 import { Button } from "../ui/button";
 import {
@@ -10,13 +10,10 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { useAuthStore } from "@/stores/auth";
 
 export function Menu() {
-	const navigate = useNavigate();
-
-	function handleLogout() {
-		navigate("/entrar");
-	}
+	const { logout } = useAuthStore();
 
 	return (
 		<DropdownMenu>
@@ -55,7 +52,7 @@ export function Menu() {
 				<NavLink to="/entrar" className="flex items-center">
 					<DropdownMenuItem
 						className="cursor-pointer w-full"
-						onClick={handleLogout}
+						onClick={() => logout()}
 					>
 						<LogOut className="h-4 w-4" />
 						<span>Sair</span>

@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "@/api/auth/sign-in";
 import { toast } from "sonner";
-import { AxiosResponse } from "axios";
 import { LoaderCircle } from "lucide-react";
 import { useAuthStore } from "@/stores/auth";
 import { z } from "zod";
@@ -19,6 +18,14 @@ const signInFormSchema = z.object({
 });
 
 export type SignInFormData = z.infer<typeof signInFormSchema>;
+
+interface SignInError {
+	response: {
+		data: {
+			detail: string;
+		};
+	};
+}
 
 export function SignIn() {
 	const { authenticate } = useAuthStore();
@@ -43,10 +50,13 @@ export function SignIn() {
 	const { mutate: signInFn, isPending } = useMutation({
 		mutationFn: signIn,
 		mutationKey: ["signIn"],
-		onError: (error: AxiosResponse) => {
-			// @ts-ignore
+		onError: (error: SignInError) => {
 			if (error.response.data.detail === "User already registered") {
 				toast.error("Este email já está em uso.");
+			}
+
+			if (error.response.data.detail === "Invalid credentials") {
+				toast.error("Email ou senha inválidos.");
 			}
 		},
 

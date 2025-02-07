@@ -1,6 +1,5 @@
 import { api } from "@/services/axios";
 import { AxiosError } from "axios";
-import Cookies from "js-cookie";
 
 interface GetProfileResponse {
 	id: string;
@@ -10,15 +9,9 @@ interface GetProfileResponse {
 
 export async function getProfile(): Promise<GetProfileResponse | undefined> {
 	try {
-		const auth_token = Cookies.get("auth_token");
+		// await new Promise((resolve) => setTimeout(resolve, 1000));
 
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		const response = await api.get<GetProfileResponse>("/users/me", {
-			headers: {
-				Authorization: `Bearer ${auth_token}`,
-			},
-		});
+		const response = await api.get<GetProfileResponse>("/users/me");
 
 		return response.data;
 	} catch (error) {

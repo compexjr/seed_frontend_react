@@ -9,8 +9,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useQuery } from "@tanstack/react-query";
+import { getProfile } from "@/api/auth/get-profile";
+import { useEffect } from "react";
 
 export function Profile() {
+	const { data, isPending } = useQuery({
+		queryFn: getProfile,
+		queryKey: ["profile"],
+	});
+
 	return (
 		<Card className="w-full shadow-none overflow-auto">
 			<CardHeader>
@@ -40,16 +48,18 @@ export function Profile() {
 				<div className="mt-6 grid grid-cols-2 gap-4 max-w-[600px]">
 					<div className="space-y-1">
 						<Label htmlFor="first-name">Nome</Label>
-						<Input id="first-name" defaultValue="Izaías" />
+
+						{isPending && <Skeleton className="w-full h-[37px]" />}
+
+						{!isPending && data && <Input id="first-name" value={data.name} />}
 					</div>
 
 					<div className="space-y-1">
 						<Label htmlFor="email">Email</Label>
-						<Input
-							name="email"
-							id="email"
-							defaultValue="izaiaslima356@gmail.com"
-						/>
+
+						{isPending && <Skeleton className="w-full h-[37px]" />}
+
+						{!isPending && data && <Input id="email" value={data.email} />}
 					</div>
 				</div>
 			</CardContent>

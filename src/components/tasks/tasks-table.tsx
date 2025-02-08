@@ -9,19 +9,14 @@ import { TasksTableItem } from "./tasks-table-item";
 import { TasksTableSkeleton } from "./tasks-table-item-skeleton";
 import { TasksTableFilters } from "./tasks-table-filter";
 import { EmptyState } from "../global/empty-state";
-import { useEffect, useState } from "react";
-import { mockTasks } from "@/mocks/tasks";
 import { Task } from "@/@types/task";
+import { useQuery } from "@tanstack/react-query";
+import { getTasks } from "@/api/tasks/get-tasks";
 
 export function TasksTable() {
-	const [tasks, setTasks] = useState<Task[]>([]);
-	const [isLoadingTasks, setIsLoadingTasks] = useState(true);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setTasks(mockTasks);
-			setIsLoadingTasks(false);
-		}, 1000);
+	const { data: tasks, isPending: isLoadingTasks } = useQuery({
+		queryKey: ["tasks"],
+		queryFn: getTasks,
 	});
 
 	return (
@@ -35,18 +30,14 @@ export function TasksTable() {
 					<TableHeader>
 						<TableRow className="bg-muted/50">
 							<TableHead className="w-[100px]">Índice</TableHead>
-							
-							<TableHead className="min-w-[200px] xl:w-[200px]">
-								Título
-							</TableHead>
+
+							<TableHead className="xl:w-[200px]">Título</TableHead>
 
 							<TableHead className="min-w-[200px] xl:w-[200px]">
 								Descrição
 							</TableHead>
 
-							<TableHead className="min-w-[230px] xl:w-[230px]">
-								Data de Criação
-							</TableHead>
+							<TableHead className="xl:w-[230px]">Data de Criação</TableHead>
 
 							<TableHead className="min-w-[230px] xl:w-[230px]">
 								Data de Conclusão
@@ -65,6 +56,7 @@ export function TasksTable() {
 					<TableBody>
 						{!isLoadingTasks &&
 							tasks &&
+							tasks.length > 0 &&
 							tasks.map((task, index) => {
 								return (
 									<TasksTableItem key={task.id} index={index} task={task} />

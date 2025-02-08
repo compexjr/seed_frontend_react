@@ -1,5 +1,4 @@
 import { api } from "@/services/axios";
-import { AxiosError } from "axios";
 
 interface GetProfileResponse {
 	id: string;
@@ -7,16 +6,12 @@ interface GetProfileResponse {
 	name: string;
 }
 
-export async function getProfile(): Promise<GetProfileResponse | undefined> {
+export async function getProfile(): Promise<GetProfileResponse> {
 	try {
-		// await new Promise((resolve) => setTimeout(resolve, 1000));
-
 		const response = await api.get<GetProfileResponse>("/users/profile");
 
 		return response.data;
 	} catch (error) {
-		if (error instanceof AxiosError) {
-			throw error;
-		}
+		throw error;
 	}
 }

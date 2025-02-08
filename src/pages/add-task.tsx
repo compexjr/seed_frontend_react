@@ -1,15 +1,44 @@
-import { Label } from "@/components/ui/label";
 import {
 	Card,
 	CardContent,
 	CardFooter,
 	CardHeader,
 } from "@/components/ui/card";
+import { LoaderCircle, SquareCheck } from "lucide-react";
+import { useFormMutation } from "@/hooks/use-form-mutation";
+import { createTask } from "@/api/tasks/create-task";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SquareCheck } from "lucide-react";
+import { toast } from "sonner";
+import { z } from "zod";
+
+const CreateTaskFormSchema = z.object({
+	title: z.string(),
+	description: z.string(),
+});
 
 export function AddTask() {
+	const {
+		handleSubmitForm,
+		reset,
+		register,
+		mutation: { isPending },
+	} = useFormMutation({
+		schema: CreateTaskFormSchema,
+		defaultValues: {
+			title: "",
+			description: "",
+		},
+		mutationFn: createTask,
+		mutationOptions: {
+			onSuccess: () => {
+				toast.success("Tarefa criada com sucesso");
+				reset();
+			},
+		},
+	});
+
 	return (
 		<Card className="w-full shadow-none overflow-auto">
 			<CardHeader>
@@ -20,14 +49,18 @@ export function AddTask() {
 			</CardHeader>
 
 			<CardContent>
-				<div className="flex flex-col gap-4 max-w-[600px]">
+				<form
+					onSubmit={handleSubmitForm}
+					id="create-task"
+					className="flex flex-col gap-4 max-w-[600px]"
+				>
 					<div className="space-y-1">
 						<Label htmlFor="title">Título</Label>
 						<Input
 							type="text"
-							name="title"
 							id="title"
 							placeholder="Digite o nome da tarefa"
+							{...register("title")}
 						/>
 					</div>
 
@@ -35,16 +68,20 @@ export function AddTask() {
 						<Label htmlFor="description">Descrição</Label>
 						<Input
 							type="text"
-							name="description"
 							id="description"
 							placeholder="Descreva a tarefa"
+							{...register("description")}
 						/>
 					</div>
-				</div>
+				</form>
 			</CardContent>
 
 			<CardFooter className="flex p-4 justify-end border-t bg-muted">
-				<Button>Salvar</Button>
+				<Button type="submit" form="create-task" className="w-[100px]">
+					{isPending && <LoaderCircle className="animate-spin" />}
+
+					{!isPending && "Salvar"}
+				</Button>
 			</CardFooter>
 		</Card>
 	);

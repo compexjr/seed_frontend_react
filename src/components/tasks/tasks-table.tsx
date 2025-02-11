@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getTasks } from "@/api/tasks/get-tasks";
 
 export function TasksTable() {
-	const { data: tasks, isPending: isLoadingTasks } = useQuery({
+	const { data: response, isPending: isLoadingTasks } = useQuery({
 		queryKey: ["tasks"],
 		queryFn: getTasks,
 	});
@@ -55,9 +55,9 @@ export function TasksTable() {
 
 					<TableBody>
 						{!isLoadingTasks &&
-							tasks &&
-							tasks.length > 0 &&
-							tasks.map((task, index) => {
+							response &&
+							response.data.length > 0 &&
+							response.data.map((task, index) => {
 								return (
 									<TasksTableItem key={task.id} index={index} task={task} />
 								);
@@ -68,8 +68,8 @@ export function TasksTable() {
 				</Table>
 			</div>
 
-			{((tasks && tasks.length === 0 && !isLoadingTasks) ||
-				(!tasks && !isLoadingTasks)) && <EmptyState />}
+			{((response && response.data.length === 0 && !isLoadingTasks) ||
+				(!response && !isLoadingTasks)) && <EmptyState />}
 		</div>
 	);
 }

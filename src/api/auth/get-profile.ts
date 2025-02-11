@@ -1,14 +1,18 @@
+import { HTTPResponse } from "@/@types/http";
 import { api } from "@/services/axios";
 
-interface GetProfileResponse {
-	id: string;
-	email: string;
-	name: string;
+interface GetProfileResponse extends HTTPResponse {
+	data: {
+		user_id: string;
+		email: string;
+		name: string;
+		image: string;
+	};
 }
 
 export async function getProfile(): Promise<GetProfileResponse> {
 	try {
-		const response = await api.get<GetProfileResponse>("/users/profile");
+		const response = await api.get<GetProfileResponse>("/auth/profile");
 
 		return response.data;
 	} catch (error) {

@@ -4,14 +4,14 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
 
 ## Índice
 
-1. [Casos de Uso](#casos-de-uso)  
-2. [Arquitetura Base](#arquitetura-base)  
-3. [Como usar](#como-usar)  
-4. [Features Básicas](#features-básicas)  
-5. [Aspectos Técnicos](#aspectos-técnicos)  
-6. [Quadro de atividades Kanban](#quadro-de-atividades-kanban)  
-7. [Regras de Negócio](#regras-de-negócio)  
-8. [Testes da aplicação front-end](#testes-da-aplicação-front-end)  
+1. [Casos de Uso](#casos-de-uso)
+2. [Arquitetura Base](#arquitetura-base)
+3. [Como usar](#como-usar)
+4. [Features Básicas](#features-básicas)
+5. [Aspectos Técnicos](#aspectos-técnicos)
+6. [Quadro de atividades Kanban](#quadro-de-atividades-kanban)
+7. [Regras de Negócio](#regras-de-negócio)
+8. [Testes da aplicação front-end](#testes-da-aplicação-front-end)
 9. [Referências](#referências)
 
 ## Casos de Uso
@@ -48,7 +48,7 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
 2. **Crie o arquivo `.env` na raiz do projeto:**
    - Crie um arquivo chamado `.env` no diretório raiz do seu projeto e adicione as variáveis necessárias, Exemplo:
      ```
-     ENV_DATABASE_URL=
+     VITE_DATABASE_URL=""
      ```
 
 3. **Execute a aplicação:**
@@ -56,7 +56,7 @@ Este protótipo é uma aplicação web front-end baseada no framework [ReactJS](
      ```bash
      pnpm dev
      ```
-Observação: 
+Observação:
 - Antes de executar a aplicação front-end, procure deixar a [aplicação back-end](https://github.com/compexjr/seed_backend) executando para permitir os testes fim a fim (front-end->back-end, back-end->front-end).
 
 ## Features Básicas

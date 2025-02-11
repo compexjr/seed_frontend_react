@@ -1,17 +1,17 @@
 import { api } from "@/services/axios";
 import { AxiosError } from "axios";
 
-interface UpdatePasswordRequestBody {
+interface ResetPasswordRequestBody {
 	password: string;
 	new_password: string;
 }
 
-export async function updatePassword({
+export async function resetPassword({
 	password,
 	new_password,
-}: UpdatePasswordRequestBody): Promise<void> {
+}: ResetPasswordRequestBody): Promise<void> {
 	try {
-		await api.put("/users/me", {
+		await api.put("/auth/reset-password", {
 			password,
 			new_password,
 		});

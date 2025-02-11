@@ -18,7 +18,7 @@ import { getProfile } from "@/api/auth/get-profile";
 export function Menu() {
 	const { logout } = useAuthStore();
 
-	const { data, isPending } = useQuery({
+	const { data: response, isPending } = useQuery({
 		queryFn: getProfile,
 		queryKey: ["profile"],
 	});
@@ -33,10 +33,10 @@ export function Menu() {
 
 					{isPending && <ProfileSkeleton />}
 
-					{!isPending && data && (
+					{!isPending && response && (
 						<div className="flex flex-col text-sm">
-							<strong>{data.name}</strong>
-							<span className="w-[200px]">{data.email}</span>
+							<strong>{response.data.name}</strong>
+							<span className="w-[200px]">{response.data.email}</span>
 						</div>
 					)}
 				</div>

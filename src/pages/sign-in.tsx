@@ -1,15 +1,12 @@
-import { Label } from "@/components/ui/label";
-import { Input } from "../components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useSearchParams, useNavigate } from "react-router";
-import { useEffect } from "react";
-import { useForm, type SubmitErrorHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { signIn } from "@/api/auth/sign-in";
-import { toast } from "sonner";
+import { useNavigate, useSearchParams } from "react-router";
 import { LoaderCircle } from "lucide-react";
 import { useAuthStore } from "@/stores/auth";
+import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "../components/ui/input";
+import { signIn } from "@/api/auth/sign-in";
+import { useFormMutation } from "@/hooks/use-form-mutation";
 import { z } from "zod";
 
 const signInFormSchema = z.object({
@@ -17,27 +14,32 @@ const signInFormSchema = z.object({
 	password: z.string().min(1, "A senha é obrigatória."),
 });
 
-export type SignInFormData = z.infer<typeof signInFormSchema>;
-
-interface SignInError {
-	response: {
-		data: {
-			detail: string;
-		};
-	};
-}
-
 export function SignIn() {
+	const navigate = useNavigate();
 	const { authenticate } = useAuthStore();
 	const [searchParams] = useSearchParams();
-	const navigate = useNavigate();
-
-	const { handleSubmit, register, setValue } = useForm<SignInFormData>({
+	const {
+		mutation: { isPending: isSignInLoading },
+		register,
+		handleSubmitForm,
+		setValue,
+	} = useFormMutation({
+		schema: signInFormSchema,
 		defaultValues: {
 			email: "",
 			password: "",
 		},
-		resolver: zodResolver(signInFormSchema),
+		mutationFn: signIn,
+		mutationOptions: {
+			onSuccess: (response) => {
+				if (response.success) {
+					authenticate(response.data.token);
+				}
+			},
+			onError: (error) => {
+				console.log(error);
+			},
+		},
 	});
 
 	useEffect(() => {
@@ -46,43 +48,6 @@ export function SignIn() {
 			setValue("email", emailFromQuery);
 		}
 	}, [searchParams]);
-
-	const { mutate: signInFn, isPending } = useMutation({
-		mutationFn: signIn,
-		mutationKey: ["signIn"],
-		onError: (error: SignInError) => {
-			if (error.response.data.detail === "User already registered") {
-				toast.error("Este email já está em uso.");
-			}
-
-			if (error.response.data.detail === "Invalid credentials") {
-				toast.error("Email ou senha inválidos.");
-			}
-		},
-
-		onSuccess: (response) => {
-			if (response?.token) {
-				authenticate(response.token);
-				navigate("/");
-			}
-		},
-	});
-
-	const onFormError: SubmitErrorHandler<SignInFormData> = (errors) => {
-		if (errors.email) {
-			toast.error(errors.email.message);
-			return;
-		}
-
-		if (errors.password) {
-			toast.error(errors.password.message);
-			return;
-		}
-	};
-
-	function handleSignIn(data: SignInFormData) {
-		signInFn(data);
-	}
 
 	return (
 		<div className="flex flex-col gap-8 text-center w-full max-w-[350px] rounded-lg">
@@ -93,10 +58,7 @@ export function SignIn() {
 				</span>
 			</div>
 
-			<form
-				onSubmit={handleSubmit(handleSignIn, onFormError)}
-				className="flex flex-col gap-4"
-			>
+			<form onSubmit={handleSubmitForm} className="flex flex-col gap-4">
 				<div className="flex flex-col gap-2 text-left">
 					<Label htmlFor="email">Email</Label>
 
@@ -125,9 +87,9 @@ export function SignIn() {
 					type="submit"
 					className="mt-2 w-full bg-zinc-950 hover:bg-zinc-900 text-white"
 				>
-					{isPending && <LoaderCircle className="animate-spin" />}
+					{isSignInLoading && <LoaderCircle className="animate-spin" />}
 
-					{!isPending && "Entrar"}
+					{!isSignInLoading && "Entrar"}
 				</Button>
 
 				<a href="/criar-conta" className="text-sm font-medium hover:underline">

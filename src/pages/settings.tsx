@@ -13,27 +13,26 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitErrorHandler } from "react-hook-form";
-import { updatePassword } from "@/api/auth/update-password";
-import type { AxiosError, AxiosResponse } from "axios";
+import { resetPassword } from "@/api/auth/reset-password";
 
-const updatePasswordFormSchema = z.object({
+const resetPasswordFormSchema = z.object({
 	password: z.string().min(1, "A senha é obrigatória."),
 	newPassword: z.string().min(1, "A nova senha é obrigatória."),
 });
 
-export type UpdatePasswordFormData = z.infer<typeof updatePasswordFormSchema>;
+export type ResetPasswordFormData = z.infer<typeof resetPasswordFormSchema>;
 
 export function Settings() {
-	const { handleSubmit, register } = useForm<UpdatePasswordFormData>({
+	const { handleSubmit, register } = useForm<ResetPasswordFormData>({
 		defaultValues: {
 			password: "",
 			newPassword: "",
 		},
-		resolver: zodResolver(updatePasswordFormSchema),
+		resolver: zodResolver(resetPasswordFormSchema),
 	});
 
-	const { mutate: updatePasswordFn, isPending } = useMutation({
-		mutationFn: updatePassword,
+	const { mutate: resetPasswordFn, isPending } = useMutation({
+		mutationFn: resetPassword,
 		mutationKey: ["update-password"],
 		onError: (error: { response: { data: { detail: string } } }) => {
 			if (error.response.data.detail === "Invalid password") {
@@ -45,7 +44,7 @@ export function Settings() {
 		},
 	});
 
-	const onFormError: SubmitErrorHandler<UpdatePasswordFormData> = (errors) => {
+	const onFormError: SubmitErrorHandler<ResetPasswordFormData> = (errors) => {
 		if (errors.password) {
 			toast.error(errors.password.message);
 			return;
@@ -57,8 +56,8 @@ export function Settings() {
 		}
 	};
 
-	function handleUpdatePassword(data: UpdatePasswordFormData) {
-		updatePasswordFn({
+	function handleResetPassword(data: ResetPasswordFormData) {
+		resetPasswordFn({
 			password: data.password,
 			new_password: data.newPassword,
 		});
@@ -75,7 +74,7 @@ export function Settings() {
 
 			<CardContent>
 				<form
-					onSubmit={handleSubmit(handleUpdatePassword, onFormError)}
+					onSubmit={handleSubmit(handleResetPassword, onFormError)}
 					id="update-password-form"
 					className="space-y-4 max-w-[400px]"
 				>

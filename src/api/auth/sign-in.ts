@@ -1,31 +1,30 @@
+import { HTTPResponse } from "@/@types/http";
 import { api } from "@/services/axios";
-import { AxiosError } from "axios";
 
 interface SignInRequestBody {
 	email: string;
 	password: string;
 }
 
-interface SignInRequestResponse {
-	id: string;
-	email: string;
-	token: string;
+interface SignInRequestResponse extends HTTPResponse {
+	data: {
+		token: string;
+		token_type: string;
+	};
 }
 
 export async function signIn({
 	email,
 	password,
-}: SignInRequestBody): Promise<SignInRequestResponse | undefined> {
+}: SignInRequestBody): Promise<SignInRequestResponse> {
 	try {
-		const response = await api.post<SignInRequestResponse>("/users/login", {
+		const response = await api.post<SignInRequestResponse>("/auth/sign-in", {
 			email,
 			password,
 		});
 
 		return response.data;
 	} catch (error) {
-		if (error instanceof AxiosError) {
-			throw error;
-		}
+		throw error;
 	}
 }

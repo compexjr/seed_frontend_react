@@ -13,6 +13,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 	authenticate: (auth_token) => {
 		Cookies.set("auth_token", auth_token, { expires: 1, secure: true });
 		set({ isAuthenticated: true });
+		window.location.href = "/";
 	},
 
 	logout: () => {

@@ -11,10 +11,9 @@ import { User } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "@/api/auth/get-profile";
-import { useEffect } from "react";
 
 export function Profile() {
-	const { data, isPending } = useQuery({
+	const { data: response, isPending } = useQuery({
 		queryFn: getProfile,
 		queryKey: ["profile"],
 	});
@@ -51,7 +50,9 @@ export function Profile() {
 
 						{isPending && <Skeleton className="w-full h-[37px]" />}
 
-						{!isPending && data && <Input id="first-name" value={data.name} />}
+						{!isPending && response && (
+							<Input id="first-name" value={response.data.name} />
+						)}
 					</div>
 
 					<div className="space-y-1">
@@ -59,7 +60,9 @@ export function Profile() {
 
 						{isPending && <Skeleton className="w-full h-[37px]" />}
 
-						{!isPending && data && <Input id="email" value={data.email} />}
+						{!isPending && response && (
+							<Input id="email" value={response.data.email} />
+						)}
 					</div>
 				</div>
 			</CardContent>

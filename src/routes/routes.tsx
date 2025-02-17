@@ -13,17 +13,21 @@ import { Reports } from "@/pages/reports";
 import { AddTask } from "@/pages/add-task";
 import { AddImage } from "@/pages/add-image";
 import { NotFound } from "@/pages/not-found";
-import { ProtectedRoute } from "@/pages/protected-route";
+import { PrivateRoutes } from "@/pages/private-routes";
+import { PublicRoutes } from "@/pages/public-routes";
+
 
 export function AppRoutes() {
 	return (
 		<Routes>
-			<Route element={<AuthLayout />}>
-				<Route path="entrar" element={<SignIn />} />
-				<Route path="criar-conta" element={<SignUp />} />
+			<Route element={<PublicRoutes />}>
+				<Route element={<AuthLayout />}>
+					<Route path="entrar" element={<SignIn />} />
+					<Route path="cadastro" element={<SignUp />} />
+				</Route>
 			</Route>
 
-			<Route element={<ProtectedRoute />}>
+			<Route element={<PrivateRoutes />}>
 				<Route element={<AppLayout />}>
 					<Route index element={<Dashboard />} />
 					<Route path="adicionar-tarefa" element={<AddTask />} />

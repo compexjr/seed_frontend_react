@@ -1,4 +1,4 @@
-import { api } from "@/services/axios";
+import { api } from "@/lib/axios";
 import { Task } from "@/@types/task";
 import { HTTPResponse } from "@/@types/http";
 

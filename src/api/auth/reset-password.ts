@@ -1,4 +1,4 @@
-import { api } from "@/services/axios";
+import { api } from "@/lib/axios";
 import { AxiosError } from "axios";
 
 interface ResetPasswordRequestBody {

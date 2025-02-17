@@ -6,10 +6,10 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-	const auth_token = Cookies.get("auth_token");
+	const access_token = Cookies.get("access_token");
 
-	if (auth_token) {
-		config.headers.Authorization = `Bearer ${auth_token}`;
+	if (access_token) {
+		config.headers.Authorization = `Bearer ${access_token}`;
 	}
 
 	return config;

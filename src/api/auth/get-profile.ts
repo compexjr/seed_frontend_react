@@ -1,5 +1,5 @@
 import { HTTPResponse } from "@/@types/http";
-import { api } from "@/services/axios";
+import { api } from "@/lib/axios";
 
 interface GetProfileResponse extends HTTPResponse {
 	data: {

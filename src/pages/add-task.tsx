@@ -1,43 +1,25 @@
+import { LoaderCircle, SquareCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useAddTask } from "@/hooks/use-add-task";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
 import {
 	Card,
 	CardContent,
 	CardFooter,
 	CardHeader,
 } from "@/components/ui/card";
-import { LoaderCircle, SquareCheck } from "lucide-react";
-import { useFormMutation } from "@/hooks/use-form-mutation";
-import { createTask } from "@/api/tasks/create-task";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { z } from "zod";
-
-const CreateTaskFormSchema = z.object({
-	title: z.string(),
-	description: z.string(),
-});
+import { Link } from "react-router";
 
 export function AddTask() {
-	const {
-		handleSubmitForm,
-		reset,
-		register,
-		mutation: { isPending },
-	} = useFormMutation({
-		schema: CreateTaskFormSchema,
-		defaultValues: {
-			title: "",
-			description: "",
-		},
-		mutationFn: createTask,
-		mutationOptions: {
-			onSuccess: () => {
-				toast.success("Tarefa criada com sucesso");
-				reset();
-			},
-		},
-	});
+	const { form, isLoadingAddTask } = useAddTask();
 
 	return (
 		<Card className="w-full shadow-none overflow-auto">
@@ -49,38 +31,60 @@ export function AddTask() {
 			</CardHeader>
 
 			<CardContent>
-				<form
-					onSubmit={handleSubmitForm}
-					id="create-task"
-					className="flex flex-col gap-4 max-w-[600px]"
-				>
-					<div className="space-y-1">
-						<Label htmlFor="title">Título</Label>
-						<Input
-							type="text"
-							id="title"
-							placeholder="Digite o nome da tarefa"
-							{...register("title")}
+				<Form {...form}>
+					<form
+						onSubmit={form.handleSubmitForm}
+						id="add-taks-form"
+						className="space-y-4 max-w-[600px]"
+					>
+						<FormField
+							control={form.control}
+							name="title"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Título</FormLabel>
+									<FormControl>
+										<Input
+											type="text"
+											placeholder="Digite o título da tarefa"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
 						/>
-					</div>
 
-					<div className="space-y-1">
-						<Label htmlFor="description">Descrição</Label>
-						<Input
-							type="text"
-							id="description"
-							placeholder="Descreva a tarefa"
-							{...register("description")}
+						<FormField
+							control={form.control}
+							name="description"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Descrição</FormLabel>
+									<FormControl>
+										<Input
+											type="description"
+											placeholder="Digite a descrição da tarefa"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
 						/>
-					</div>
-				</form>
+					</form>
+				</Form>
 			</CardContent>
 
-			<CardFooter className="flex p-4 justify-end border-t bg-muted">
-				<Button type="submit" form="create-task" className="w-[100px]">
-					{isPending && <LoaderCircle className="animate-spin" />}
+			<CardFooter className="flex p-4 gap-4 justify-end border-t bg-muted">
+				<Button variant="outline" asChild>
+					<Link to="/">Cancelar</Link>
+				</Button>
 
-					{!isPending && "Salvar"}
+				<Button form="add-taks-form" type="submit" className="w-[150px]">
+					{isLoadingAddTask && <LoaderCircle className="animate-spin" />}
+
+					{!isLoadingAddTask && "Salvar"}
 				</Button>
 			</CardFooter>
 		</Card>

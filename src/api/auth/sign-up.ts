@@ -18,9 +18,7 @@ interface SignUpErrorResponseBody extends HTTPErrorResponse {
 
 type SignUpResponse = SignUpSuccessResponseBody | SignUpErrorResponseBody;
 
-export async function signUp(
-	body: SignUpRequestBody
-): Promise<SignUpResponse> {
+export async function signUp(body: SignUpRequestBody): Promise<SignUpResponse> {
 	try {
 		const response = await api.post<SignUpSuccessResponseBody>(
 			"/auth/sign-up",

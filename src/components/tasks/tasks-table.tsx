@@ -9,13 +9,12 @@ import { TasksTableItem } from "./tasks-table-item";
 import { TasksTableSkeleton } from "./tasks-table-item-skeleton";
 import { TasksTableFilters } from "./tasks-table-filter";
 import { EmptyState } from "../global/empty-state";
-import { Task } from "@/@types/task";
 import { useQuery } from "@tanstack/react-query";
 import { getTasks } from "@/api/tasks/get-tasks";
 
 export function TasksTable() {
-	const { data: response, isPending: isLoadingTasks } = useQuery({
-		queryKey: ["tasks"],
+	const { data: response, isPending: isLoadingGetTasks } = useQuery({
+		queryKey: ["get-tasks"],
 		queryFn: getTasks,
 	});
 
@@ -54,8 +53,8 @@ export function TasksTable() {
 					</TableHeader>
 
 					<TableBody>
-						{!isLoadingTasks &&
-							response &&
+						{!isLoadingGetTasks &&
+							response?.success &&
 							response.data.length > 0 &&
 							response.data.map((task, index) => {
 								return (
@@ -63,13 +62,15 @@ export function TasksTable() {
 								);
 							})}
 
-						{isLoadingTasks && <TasksTableSkeleton />}
+						{isLoadingGetTasks && <TasksTableSkeleton />}
 					</TableBody>
 				</Table>
 			</div>
 
-			{((response && response.data.length === 0 && !isLoadingTasks) ||
-				(!response && !isLoadingTasks)) && <EmptyState />}
+			{((response?.success &&
+				response.data.length === 0 &&
+				!isLoadingGetTasks) ||
+				(!response && !isLoadingGetTasks)) && <EmptyState />}
 		</div>
 	);
 }

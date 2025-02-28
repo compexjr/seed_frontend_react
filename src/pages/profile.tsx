@@ -13,9 +13,9 @@ import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "@/api/auth/get-profile";
 
 export function Profile() {
-	const { data: response, isPending } = useQuery({
+	const { data: response, isPending: isLoadingGetProfile } = useQuery({
 		queryFn: getProfile,
-		queryKey: ["profile"],
+		queryKey: ["get-profile"],
 	});
 
 	return (
@@ -40,6 +40,7 @@ export function Profile() {
 							type="file"
 							className="mt-2 pt-[6px] cursor-pointer"
 							placeholder="Escolher arquivo"
+							disabled
 						/>
 					</div>
 				</div>
@@ -48,27 +49,29 @@ export function Profile() {
 					<div className="space-y-1">
 						<Label htmlFor="first-name">Nome</Label>
 
-						{isPending && <Skeleton className="w-full h-[37px]" />}
+						{isLoadingGetProfile && <Skeleton className="w-full h-[37px]" />}
 
-						{!isPending && response && (
-							<Input id="first-name" value={response.data.name} />
+						{!isLoadingGetProfile && response?.success && (
+							<Input id="first-name" value={response.data.name} disabled />
 						)}
 					</div>
 
 					<div className="space-y-1">
 						<Label htmlFor="email">Email</Label>
 
-						{isPending && <Skeleton className="w-full h-[37px]" />}
+						{isLoadingGetProfile && <Skeleton className="w-full h-[37px]" />}
 
-						{!isPending && response && (
-							<Input id="email" value={response.data.email} />
+						{!isLoadingGetProfile && response?.success && (
+							<Input id="email" value={response.data.email} disabled />
 						)}
 					</div>
 				</div>
 			</CardContent>
 
 			<CardFooter className="flex p-4 justify-end border-t bg-muted">
-				<Button>Confirmar</Button>
+				<Button form="edit-profile" type="submit" disabled>
+					Confirmar
+				</Button>
 			</CardFooter>
 		</Card>
 	);

@@ -1,5 +1,4 @@
 import { LogOut, Settings, User } from "lucide-react";
-import { NavLink } from "react-router";
 import { Avatar } from "./avatar";
 import { Button } from "../ui/button";
 import {
@@ -14,13 +13,14 @@ import { useAuthStore } from "@/stores/auth";
 import { ProfileSkeleton } from "./profile-skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "@/api/auth/get-profile";
+import { Link } from "react-router";
 
 export function Menu() {
 	const { logout } = useAuthStore();
 
 	const { data: response, isPending } = useQuery({
 		queryFn: getProfile,
-		queryKey: ["profile"],
+		queryKey: ["get-profile"],
 	});
 
 	return (
@@ -33,7 +33,7 @@ export function Menu() {
 
 					{isPending && <ProfileSkeleton />}
 
-					{!isPending && response && (
+					{!isPending && response?.success && (
 						<div className="flex flex-col text-sm">
 							<strong>{response.data.name}</strong>
 							<span className="w-[200px]">{response.data.email}</span>
@@ -44,32 +44,30 @@ export function Menu() {
 
 			<DropdownMenuContent className="w-56 mr-4">
 				<DropdownMenuGroup>
-					<NavLink to="/perfil" className="flex items-center">
-						<DropdownMenuItem className="cursor-pointer  w-full">
+					<DropdownMenuItem className="cursor-pointer  w-full">
+						<Link to="/perfil" className="flex items-center">
 							<User className="h-4 w-4" />
 							<span>Perfil</span>
-						</DropdownMenuItem>
-					</NavLink>
+						</Link>
+					</DropdownMenuItem>
 
-					<NavLink to="/configuracoes" className="flex items-center">
-						<DropdownMenuItem className="cursor-pointer w-full">
+					<DropdownMenuItem className="cursor-pointer w-full">
+						<Link to="/configuracoes" className="flex items-center">
 							<Settings className="h-4 w-4" />
 							<span>Configurações</span>
-						</DropdownMenuItem>
-					</NavLink>
+						</Link>
+					</DropdownMenuItem>
 				</DropdownMenuGroup>
 
 				<DropdownMenuSeparator />
 
-				<NavLink to="/entrar" className="flex items-center">
-					<DropdownMenuItem
-						className="cursor-pointer w-full"
-						onClick={() => logout()}
-					>
-						<LogOut className="h-4 w-4" />
-						<span>Sair</span>
-					</DropdownMenuItem>
-				</NavLink>
+				<DropdownMenuItem
+					className="cursor-pointer w-full"
+					onClick={() => logout()}
+				>
+					<LogOut className="h-4 w-4" />
+					<span>Sair</span>
+				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);

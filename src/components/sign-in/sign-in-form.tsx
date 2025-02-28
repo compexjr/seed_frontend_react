@@ -1,4 +1,3 @@
-"use client";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -67,10 +66,12 @@ export function SignInForm() {
 					)}
 				/>
 
-				<Button
-					type="submit"
-					className="w-full"
-				>
+				<span className="text-xs mt-1 block text-muted-foreground">
+					A senha deve possuir no mínimo 8 caracteres. Deve conter pelo menos um
+					número, uma letra maiúscula e um caractere especial.
+				</span>
+
+				<Button type="submit" className="w-full">
 					{isLoadingSignIn && <LoaderCircle className="animate-spin" />}
 
 					{!isLoadingSignIn && "Entrar"}

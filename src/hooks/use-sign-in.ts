@@ -1,18 +1,15 @@
 import { useFormMutation } from "./use-form-mutation";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
 import { signIn } from "@/api/auth/sign-in";
+import { useAuthStore } from "@/stores/auth";
 import { toast } from "sonner";
 import { z } from "zod";
-
-import Cookies from "js-cookie";
-import { useAuthStore } from "@/stores/auth";
 
 const signInFormSchema = z.object({
 	email: z.string().email("Digite um email válido."),
 	password: z
 		.string()
-		.min(8, "A senha deve ter no mínimo 8 caracteres.")
+		.min(6, "A senha deve ter no mínimo 8 caracteres.")
 		.regex(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula.")
 		.regex(/\d/, "A senha deve conter pelo menos um número.")
 		.regex(
@@ -22,7 +19,6 @@ const signInFormSchema = z.object({
 });
 
 export function useSignIn() {
-	const navigate = useNavigate();
 	const { authenticate } = useAuthStore();
 
 	const form = useFormMutation({
@@ -46,7 +42,7 @@ export function useSignIn() {
 				return;
 			}
 
-			if (response.error === "Invalid Credentials") {
+			if (response.error.toLocaleLowerCase() === "invalid credentials") {
 				toast.error("Email ou senha inválidos.");
 			}
 		},

@@ -1,12 +1,15 @@
+import { useDeleteTask } from "@/hooks/use-delete-task";
 import { Button } from "../ui/button";
 import { DialogContent } from "../ui/dialog";
-import { TriangleAlert } from "lucide-react";
+import { LoaderCircle, TriangleAlert } from "lucide-react";
 
 interface DeleteTaskDialogProps {
 	taskId: string;
 }
 
-export function DeleteTaskDialog({  }: DeleteTaskDialogProps) {
+export function DeleteTaskDialog({ taskId }: DeleteTaskDialogProps) {
+	const { deleteTaskFn, isLoadingDeleteTask } = useDeleteTask();
+
 	return (
 		<DialogContent className="w-[400px]">
 			<div className="flex flex-col gap-2 w-full items-center text-center">
@@ -22,11 +25,12 @@ export function DeleteTaskDialog({  }: DeleteTaskDialogProps) {
 				</span>
 
 				<Button
-					onClick={() => {}}
+					onClick={() => deleteTaskFn(taskId)}
+					disabled={isLoadingDeleteTask}
 					variant="destructive"
 					className="w-full mt-4"
 				>
-					{/* {isLoading && <LoaderCircle className="animate-spin" />} */}
+					{isLoadingDeleteTask && <LoaderCircle className="animate-spin" />}
 					Excluir tarefa
 				</Button>
 			</div>

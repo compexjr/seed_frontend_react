@@ -1,4 +1,3 @@
-"use client";
 import { SidebarContent } from "./sidebar-content";
 import { Button } from "../ui/button";
 import { Menu as MenuIcon, Syringe } from "lucide-react";
@@ -9,6 +8,7 @@ import {
 } from "@/components/ui/collapsible";
 import { useState } from "react";
 import { Menu } from "../header/menu";
+import { Link } from "react-router";
 
 export function Sidebar() {
 	const [isOpen, setIsOpen] = useState<"open" | "closed">("closed");
@@ -26,7 +26,7 @@ export function Sidebar() {
 		>
 			<div className="flex items-center justify-between ">
 				<h1 className="text-xl xl:text-2xl font-medium flex items-center gap-2">
-					MyAppFront
+					<Link to="/">MyAppFront</Link>
 				</h1>
 
 				<div className="flex items-center gap-3">

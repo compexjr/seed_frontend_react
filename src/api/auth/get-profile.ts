@@ -1,7 +1,8 @@
-import { HTTPResponse } from "@/@types/http";
+import { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http";
 import { api } from "@/lib/axios";
+import { AxiosError } from "axios";
 
-interface GetProfileResponse extends HTTPResponse {
+interface GetProfileSuccessResponse extends HTTPSuccessResponse {
 	data: {
 		user_id: string;
 		email: string;
@@ -10,12 +11,26 @@ interface GetProfileResponse extends HTTPResponse {
 	};
 }
 
+interface GetProfileErrorResponse extends HTTPErrorResponse {
+	data: null;
+}
+
+type GetProfileResponse = GetProfileSuccessResponse | GetProfileErrorResponse;
+
 export async function getProfile(): Promise<GetProfileResponse> {
 	try {
-		const response = await api.get<GetProfileResponse>("/auth/profile");
+		const response = await api.get<GetProfileSuccessResponse>("/auth/profile");
 
 		return response.data;
 	} catch (error) {
-		throw error;
+		if (error instanceof AxiosError && error.response?.data) {
+			return error.response.data;
+		}
+
+		return {
+			success: false,
+			error: "Erro desconhecido",
+			data: null,
+		};
 	}
 }

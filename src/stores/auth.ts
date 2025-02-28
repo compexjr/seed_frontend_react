@@ -22,5 +22,6 @@ export const useAuthStore = create<AuthState>((set) => ({
 	logout: () => {
 		Cookies.remove("access_token");
 		set({ isAuthenticated: false });
+		window.location.href = "/entrar";
 	},
 }));

@@ -1,19 +1,35 @@
+import { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http";
 import { api } from "@/lib/axios";
 import { Task } from "@/@types/task";
-import { HTTPResponse } from "@/@types/http";
+import { AxiosError } from "axios";
 
-interface GetTasksResponseBody extends HTTPResponse {
+interface GetTasksSuccessResponse extends HTTPSuccessResponse {
 	data: Task[];
 }
 
-export async function getTasks(): Promise<GetTasksResponseBody> {
+interface GetTasksErrorResponse extends HTTPErrorResponse {
+	data: null;
+}
+
+type GetTasksResponse = GetTasksSuccessResponse | GetTasksErrorResponse;
+
+export async function getTasks(): Promise<GetTasksResponse> {
 	try {
+		// delay the response for 1 second
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 
-		const response = await api.get<GetTasksResponseBody>("/tasks");
+		const response = await api.get<GetTasksSuccessResponse>("/tasks");
 
 		return response.data;
 	} catch (error) {
-		throw error;
+		if (error instanceof AxiosError && error.response?.data) {
+			return error.response.data;
+		}
+
+		return {
+			success: false,
+			error: "Erro desconhecido",
+			data: null,
+		};
 	}
 }

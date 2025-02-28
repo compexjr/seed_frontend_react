@@ -2,26 +2,30 @@ import { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http";
 import { api } from "@/lib/axios";
 import { AxiosError } from "axios";
 
-interface CreateTaskRequest {
+interface EditTaskRequest {
 	title: string;
 	description: string;
 }
 
-interface CreateTaskSuccessResponse extends HTTPSuccessResponse {
+interface EditTaskSuccessResponse extends HTTPSuccessResponse {
 	data: null;
 }
 
-interface CreateTaskErrorResponse extends HTTPErrorResponse {
+interface EditTaskErrorResponse extends HTTPErrorResponse {
 	data: null;
 }
 
-type CreateTaskResponse = CreateTaskSuccessResponse | CreateTaskErrorResponse;
+type EditTaskResponse = EditTaskSuccessResponse | EditTaskErrorResponse;
 
-export async function createTask(
-	task: CreateTaskRequest
-): Promise<CreateTaskResponse> {
+export async function editTask(
+	id: string,
+	task: EditTaskRequest
+): Promise<EditTaskResponse> {
 	try {
-		const response = await api.post<CreateTaskSuccessResponse>("/tasks", task);
+		const response = await api.put<EditTaskSuccessResponse>(
+			`/tasks/${id}`,
+			task
+		);
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

@@ -33,6 +33,7 @@ export function SignUpForm() {
 							<FormControl>
 								<Input type="text" placeholder="Digite seu nome" {...field} />
 							</FormControl>
+							
 							<FormMessage />
 						</FormItem>
 					)}

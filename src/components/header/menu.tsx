@@ -34,7 +34,7 @@ export function Menu() {
 					{isPending && <ProfileSkeleton />}
 
 					{!isPending && response?.success && (
-						<div className="flex flex-col text-sm">
+						<div className="hidden flex-col text-sm sm:flex">
 							<strong>{response.data.name}</strong>
 							<span className="w-[200px]">{response.data.email}</span>
 						</div>
@@ -45,14 +45,14 @@ export function Menu() {
 			<DropdownMenuContent className="w-56 mr-4">
 				<DropdownMenuGroup>
 					<DropdownMenuItem className="cursor-pointer  w-full">
-						<Link to="/perfil" className="flex items-center">
+						<Link to="/perfil" className="flex items-center gap-2">
 							<User className="h-4 w-4" />
 							<span>Perfil</span>
 						</Link>
 					</DropdownMenuItem>
 
 					<DropdownMenuItem className="cursor-pointer w-full">
-						<Link to="/configuracoes" className="flex items-center">
+						<Link to="/configuracoes" className="flex items-center gap-2">
 							<Settings className="h-4 w-4" />
 							<span>Configurações</span>
 						</Link>
@@ -62,7 +62,7 @@ export function Menu() {
 				<DropdownMenuSeparator />
 
 				<DropdownMenuItem
-					className="cursor-pointer w-full"
+					className="cursor-pointer w-full hover:!text-red-500"
 					onClick={() => logout()}
 				>
 					<LogOut className="h-4 w-4" />

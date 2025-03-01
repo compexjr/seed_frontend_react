@@ -22,6 +22,7 @@ export async function createTask(
 ): Promise<CreateTaskResponse> {
 	try {
 		const response = await api.post<CreateTaskSuccessResponse>("/tasks", task);
+		
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

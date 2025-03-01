@@ -15,9 +15,6 @@ type GetTasksResponse = GetTasksSuccessResponse | GetTasksErrorResponse;
 
 export async function getTasks(): Promise<GetTasksResponse> {
 	try {
-		// delay the response for 1 second
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
 		const response = await api.get<GetTasksSuccessResponse>("/tasks");
 
 		return response.data;

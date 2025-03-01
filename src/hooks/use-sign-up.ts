@@ -8,7 +8,14 @@ import { signUp } from "@/api/auth/sign-up";
 const signUpFormSchema = z.object({
 	name: z.string().min(3, "O nome deve ter no mínimo 3 caracteres."),
 	email: z.string().email("Digite um email válido."),
-	password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
+	password: z.string(),
+	// .min(6, "A senha deve ter no mínimo 8 caracteres.")
+	// .regex(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula.")
+	// .regex(/\d/, "A senha deve conter pelo menos um número.")
+	// .regex(
+	// 	/[^A-Za-z0-9]/,
+	// 	"A senha deve conter pelo menos um caractere especial."
+	// ),
 });
 
 export function useSignUp() {
@@ -17,6 +24,7 @@ export function useSignUp() {
 	const form = useFormMutation({
 		schema: signUpFormSchema,
 		defaultValues: {
+			name: "",
 			email: "",
 			password: "",
 		},
@@ -35,9 +43,7 @@ export function useSignUp() {
 				return;
 			}
 
-			if (response.error === "email already registered") {
-				toast.error("Email já cadastrado.");
-			}
+			toast.error(response.error);
 		},
 	});
 

@@ -17,6 +17,7 @@ export async function deleteTask(id: string): Promise<DeleteTaskResponse> {
 		const response = await api.delete<DeleteTaskSuccessResponse>(
 			`/tasks/${id}`
 		);
+		
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

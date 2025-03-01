@@ -24,6 +24,7 @@ export async function signUp(body: SignUpRequestBody): Promise<SignUpResponse> {
 			"/auth/sign-up",
 			body
 		);
+		
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

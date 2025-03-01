@@ -4,6 +4,7 @@ import { z } from "zod";
 import { createTask } from "@/api/tasks/create-task";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
+import { queryClient } from "@/lib/react-query";
 
 const CreateTaskFormSchema = z.object({
 	title: z.string().min(1, "O título é obrigatório"),
@@ -29,10 +30,16 @@ export function useAddTask() {
 			mutationFn: createTask,
 			onSuccess: (response) => {
 				if (response.success) {
+					queryClient.invalidateQueries({
+						queryKey: ["get-tasks"],
+					});
 					toast.success("Tarefa criada com sucesso");
 					form.reset();
 					navigate("/");
+					return;
 				}
+
+				toast.error(response.error);
 			},
 		});
 

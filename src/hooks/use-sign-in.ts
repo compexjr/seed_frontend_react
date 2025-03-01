@@ -7,15 +7,7 @@ import { z } from "zod";
 
 const signInFormSchema = z.object({
 	email: z.string().email("Digite um email válido."),
-	password: z
-		.string()
-		.min(6, "A senha deve ter no mínimo 8 caracteres.")
-		.regex(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula.")
-		.regex(/\d/, "A senha deve conter pelo menos um número.")
-		.regex(
-			/[^A-Za-z0-9]/,
-			"A senha deve conter pelo menos um caractere especial."
-		),
+	password: z.string().min(1, "Digite uma senha válida."),
 });
 
 export function useSignIn() {
@@ -42,9 +34,7 @@ export function useSignIn() {
 				return;
 			}
 
-			if (response.error.toLocaleLowerCase() === "invalid credentials") {
-				toast.error("Email ou senha inválidos.");
-			}
+			toast.error(response.error);
 		},
 	});
 

@@ -1,11 +1,11 @@
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { TableCell, TableRow } from "../ui/table";
-import { TasksTableItemStatus } from "./tasks-table-item-status";
 import { SquarePen, Trash2 } from "lucide-react";
 import { DeleteTaskDialog } from "./delete-task-dialog";
 import { Button } from "../ui/button";
 import { Task } from "@/@types/task";
 import { formatDate } from "@/utils/format-date";
+import { TaskStatusSelect } from "./task-status-select";
 
 export interface TasksTableItemProps {
 	index: number;
@@ -30,11 +30,11 @@ export function TasksTableItem({ task, index }: TasksTableItemProps) {
 			</TableCell>
 
 			<TableCell className="text-muted-foreground">
-				<TasksTableItemStatus>{task.status}</TasksTableItemStatus>
+				<TaskStatusSelect taskId={task.id} status={task.status} />
 			</TableCell>
 
 			<TableCell>
-				<Button variant="outline" size="sm">
+				<Button variant="outline" size="sm" disabled>
 					<SquarePen className="h-4 w-4" />
 				</Button>
 			</TableCell>

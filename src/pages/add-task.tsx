@@ -81,10 +81,14 @@ export function AddTask() {
 					<Link to="/">Cancelar</Link>
 				</Button>
 
-				<Button form="add-taks-form" type="submit" className="w-[150px]">
+				<Button
+					form="add-taks-form"
+					type="submit"
+					className="w-[150px]"
+					disabled={isLoadingAddTask}
+				>
 					{isLoadingAddTask && <LoaderCircle className="animate-spin" />}
-
-					{!isLoadingAddTask && "Salvar"}
+					Salvar
 				</Button>
 			</CardFooter>
 		</Card>

@@ -3,8 +3,8 @@ import { api } from "@/lib/axios";
 import { AxiosError } from "axios";
 
 interface EditTaskRequest {
-	title: string;
-	description: string;
+	taskId: string;
+	status: string;
 }
 
 interface EditTaskSuccessResponse extends HTTPSuccessResponse {
@@ -17,15 +17,15 @@ interface EditTaskErrorResponse extends HTTPErrorResponse {
 
 type EditTaskResponse = EditTaskSuccessResponse | EditTaskErrorResponse;
 
-export async function editTask(
-	id: string,
-	task: EditTaskRequest
-): Promise<EditTaskResponse> {
+export async function editTask({
+	taskId,
+	status,
+}: EditTaskRequest): Promise<EditTaskResponse> {
 	try {
-		const response = await api.put<EditTaskSuccessResponse>(
-			`/tasks/${id}`,
-			task
+		const response = await api.patch<EditTaskSuccessResponse>(
+			`/tasks/${taskId}/${status}`
 		);
+
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

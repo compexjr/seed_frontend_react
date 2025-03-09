@@ -6,4 +6,5 @@ export interface HTTPSuccessResponse {
 export interface HTTPErrorResponse {
 	success: false;
 	error: string;
+	data: null;
 }

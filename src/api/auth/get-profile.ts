@@ -11,11 +11,7 @@ interface GetProfileSuccessResponse extends HTTPSuccessResponse {
 	};
 }
 
-interface GetProfileErrorResponse extends HTTPErrorResponse {
-	data: null;
-}
-
-type GetProfileResponse = GetProfileSuccessResponse | GetProfileErrorResponse;
+type GetProfileResponse = GetProfileSuccessResponse | HTTPErrorResponse;
 
 export async function getProfile(): Promise<GetProfileResponse> {
 	try {

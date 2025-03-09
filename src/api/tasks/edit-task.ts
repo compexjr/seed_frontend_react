@@ -11,11 +11,7 @@ interface EditTaskSuccessResponse extends HTTPSuccessResponse {
 	data: null;
 }
 
-interface EditTaskErrorResponse extends HTTPErrorResponse {
-	data: null;
-}
-
-type EditTaskResponse = EditTaskSuccessResponse | EditTaskErrorResponse;
+type EditTaskResponse = EditTaskSuccessResponse | HTTPErrorResponse;
 
 export async function editTask({
 	taskId,

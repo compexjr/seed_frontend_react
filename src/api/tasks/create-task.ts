@@ -11,18 +11,14 @@ interface CreateTaskSuccessResponse extends HTTPSuccessResponse {
 	data: null;
 }
 
-interface CreateTaskErrorResponse extends HTTPErrorResponse {
-	data: null;
-}
-
-type CreateTaskResponse = CreateTaskSuccessResponse | CreateTaskErrorResponse;
+type CreateTaskResponse = CreateTaskSuccessResponse | HTTPErrorResponse;
 
 export async function createTask(
 	task: CreateTaskRequest
 ): Promise<CreateTaskResponse> {
 	try {
 		const response = await api.post<CreateTaskSuccessResponse>("/tasks", task);
-		
+
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

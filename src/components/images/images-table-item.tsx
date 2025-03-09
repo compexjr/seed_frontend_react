@@ -16,16 +16,16 @@ export function ImagesTableItem({ image, index }: ImagesTableItemProps) {
 			<TableCell>{index}</TableCell>
 
 			<TableCell>
-				<div className="w-16 h-16 rounded-md bg-muted" />
+				<img
+					src={image.image_url}
+					alt={image.image_title}
+					className="w-20 h-20"
+				/>
 			</TableCell>
 
-			<TableCell className="font-medium">{image.name}</TableCell>
+			<TableCell className="font-medium">{image.image_title}</TableCell>
 
-			<TableCell className="text-muted-foreground">
-				{image.description}
-			</TableCell>
-
-			<TableCell>
+			<TableCell className="!max-w-[100px] !w-[100px]">
 				<Button variant="outline" size="sm">
 					<SquarePen className="h-4 w-4" />
 				</Button>
@@ -39,7 +39,7 @@ export function ImagesTableItem({ image, index }: ImagesTableItemProps) {
 						</Button>
 					</DialogTrigger>
 
-					<DeleteImageDialog imageId={image.id} />
+					<DeleteImageDialog imageId={image.image_id} />
 				</Dialog>
 			</TableCell>
 		</TableRow>

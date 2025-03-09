@@ -6,18 +6,15 @@ interface DeleteTaskSuccessResponse extends HTTPSuccessResponse {
 	data: null;
 }
 
-interface DeleteTaskErrorResponse extends HTTPErrorResponse {
-	data: null;
-}
 
-type DeleteTaskResponse = DeleteTaskSuccessResponse | DeleteTaskErrorResponse;
+type DeleteTaskResponse = DeleteTaskSuccessResponse | HTTPErrorResponse;
 
 export async function deleteTask(id: string): Promise<DeleteTaskResponse> {
 	try {
 		const response = await api.delete<DeleteTaskSuccessResponse>(
 			`/tasks/${id}`
 		);
-		
+
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

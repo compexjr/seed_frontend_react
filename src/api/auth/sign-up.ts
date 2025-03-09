@@ -12,11 +12,7 @@ interface SignUpSuccessResponseBody extends HTTPSuccessResponse {
 	data: null;
 }
 
-interface SignUpErrorResponseBody extends HTTPErrorResponse {
-	data: null;
-}
-
-type SignUpResponse = SignUpSuccessResponseBody | SignUpErrorResponseBody;
+type SignUpResponse = SignUpSuccessResponseBody | HTTPErrorResponse;
 
 export async function signUp(body: SignUpRequestBody): Promise<SignUpResponse> {
 	try {
@@ -24,7 +20,7 @@ export async function signUp(body: SignUpRequestBody): Promise<SignUpResponse> {
 			"/auth/sign-up",
 			body
 		);
-		
+
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

@@ -6,23 +6,13 @@ import {
 	Table,
 } from "../ui/table";
 import { ImagesTableItem } from "./images-table-item";
-import { useEffect, useState } from "react";
-import { Image } from "@/@types/image";
-import { mockImages } from "@/mocks/images";
 import { ImagesTableFilters } from "./images-table-filters";
 import { ImagesTableItemSkeleton } from "./images-table-item-skeleton";
 import { EmptyState } from "../global/empty-state";
+import { useGetImages } from "@/hooks/use-get-images";
 
 export function ImagesTable() {
-	const [images, setImages] = useState<Image[]>([]);
-	const [isLoadingImages, setIsLoadingImages] = useState(true);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setImages(mockImages);
-			setIsLoadingImages(false);
-		}, 1000);
-	});
+	const { images, isLoadingImages } = useGetImages();
 
 	return (
 		<div className="space-y-4">
@@ -34,38 +24,37 @@ export function ImagesTable() {
 				<Table>
 					<TableHeader>
 						<TableRow className="bg-muted/50">
-							<TableHead className="w-[80px]">Índice</TableHead>
+							<TableHead className="min-w-[100px]">Índice</TableHead>
 
-							<TableHead className="min-w-[80px] xl:w-[80px]">Imagem</TableHead>
+							<TableHead className="min-w-[150px]">Imagem</TableHead>
 
-							<TableHead className="min-w-[150px] xl:w-[150px]">Nome</TableHead>
+							<TableHead className="w-full">Título</TableHead>
 
-							<TableHead className="min-w-[250px] xl:w-[250px]">
-								Descrição
-							</TableHead>
+							<TableHead className="min-w-[100px]">Editar</TableHead>
 
-							<TableHead className="max-w-[100px] w-[100px]">Editar</TableHead>
-
-							<TableHead className="max-w-[100px] w-[100px]">Excluir</TableHead>
+							<TableHead className="min-w-[100px]">Excluir</TableHead>
 						</TableRow>
 					</TableHeader>
 
 					<TableBody>
+						{isLoadingImages && <ImagesTableItemSkeleton />}
+
 						{!isLoadingImages &&
 							images &&
 							images.map((image, index) => {
 								return (
-									<ImagesTableItem key={image.id} index={index} image={image} />
+									<ImagesTableItem
+										key={image.image_id}
+										index={index}
+										image={image}
+									/>
 								);
 							})}
-
-						{isLoadingImages && <ImagesTableItemSkeleton />}
 					</TableBody>
 				</Table>
 			</div>
 
-			{((images && images.length === 0 && !isLoadingImages) ||
-				(!images && !isLoadingImages)) && <EmptyState />}
+			{!isLoadingImages && (!images || images.length === 0) && <EmptyState />}
 		</div>
 	);
 }

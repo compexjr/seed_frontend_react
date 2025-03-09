@@ -7,11 +7,7 @@ interface GetTasksSuccessResponse extends HTTPSuccessResponse {
 	data: Task[];
 }
 
-interface GetTasksErrorResponse extends HTTPErrorResponse {
-	data: null;
-}
-
-type GetTasksResponse = GetTasksSuccessResponse | GetTasksErrorResponse;
+type GetTasksResponse = GetTasksSuccessResponse | HTTPErrorResponse;
 
 export async function getTasks(): Promise<GetTasksResponse> {
 	try {

@@ -15,11 +15,7 @@ interface SignInSuccessResponse extends HTTPSuccessResponse {
 	};
 }
 
-interface SignInErrorResponse extends HTTPErrorResponse {
-	data: null;
-}
-
-type SignInResponse = SignInSuccessResponse | SignInErrorResponse;
+type SignInResponse = SignInSuccessResponse | HTTPErrorResponse;
 
 export async function signIn(
 	credentials: SignInRequest
@@ -29,7 +25,7 @@ export async function signIn(
 			"/auth/sign-in",
 			credentials
 		);
-		
+
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

@@ -1,6 +1,6 @@
 export interface Image {
-	id: string;
-	name: string;
-	description: string;
-	url: string;
+	image_id: string;
+	image_name: string;
+	image_title: string;
+	image_url: string;
 }

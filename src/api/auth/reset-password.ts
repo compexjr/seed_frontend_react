@@ -13,13 +13,7 @@ interface ResetPasswordSuccessResponse extends HTTPSuccessResponse {
 	};
 }
 
-interface ResetPasswordErrorResponse extends HTTPErrorResponse {
-	data: null;
-}
-
-type ResetPasswordResponse =
-	| ResetPasswordSuccessResponse
-	| ResetPasswordErrorResponse;
+type ResetPasswordResponse = ResetPasswordSuccessResponse | HTTPErrorResponse;
 
 export async function resetPassword(
 	credentials: ResetPasswordRequest
@@ -29,7 +23,7 @@ export async function resetPassword(
 			"/auth/reset-password",
 			credentials
 		);
-		
+
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {

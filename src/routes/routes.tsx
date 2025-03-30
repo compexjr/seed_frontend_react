@@ -15,6 +15,7 @@ import { AddImage } from "@/pages/add-image";
 import { NotFound } from "@/pages/not-found";
 import { PrivateRoutes } from "@/pages/private-routes";
 import { PublicRoutes } from "@/pages/public-routes";
+import { Home } from "@/pages/home"
 
 
 export function AppRoutes() {
@@ -28,8 +29,9 @@ export function AppRoutes() {
 			</Route>
 
 			<Route element={<PrivateRoutes />}>
+				<Route index element={<Home />} />
 				<Route element={<AppLayout />}>
-					<Route index element={<Dashboard />} />
+					<Route path="painel" element={<Dashboard />} />
 					<Route path="adicionar-tarefa" element={<AddTask />} />
 					<Route path="adicionar-imagem" element={<AddImage />} />
 					<Route path="imagens" element={<Images />} />

@@ -17,7 +17,7 @@ export function Settings() {
 			<CardHeader>
 				<div className="flex items-center w-full gap-2">
 					<LockKeyhole className="w-5 h-5" />
-					<h2 className="text-lg font-semibold">Altualizar Senha</h2>
+					<h2 className="text-lg font-semibold">Atualizar Senha</h2>
 				</div>
 			</CardHeader>
 
